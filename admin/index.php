@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Require file Common
 require_once '../commons/env.php'; // Khai báo biến môi trường
 require_once '../commons/function.php'; // Hàm hỗ trợ
@@ -30,7 +30,8 @@ match ($act) {
     'list-products' => (new AdminProductsController())->listProducts(),
     'form-add-products' => (new AdminProductsController())->formAddProducts(),
     'add-products' => (new AdminProductsController())->postAddProducts(),
-    // 'form-edit-products' => (new AdminProductsController())->formEditProducts(),
-    // 'edit-products' => (new AdminProductsController())->postEditProducts(),
+    'form-edit-products' => (new AdminProductsController())->formEditProducts(),
+    'edit-products' => (new AdminProductsController())->postEditProducts(),
+    'edit-album' => (new AdminProductsController())->postEditAlbum(),
     // 'delete-products' => (new AdminProductsController())->deleteProducts(),
 };

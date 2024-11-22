@@ -40,29 +40,29 @@
                                 <div class="form-group col-12">
                                     <label>Tên sản phẩm</label>
                                     <input type="text" class="form-control" name="ProductName" placeholder="Nhập tên sản phẩm">
-                                    <?php if (isset($error['ProductName'])) { ?>
-                                        <p class="text-danger"> <?= $error['ProductName'] ?></p>
+                                    <?php if (isset($_SESSION['error']['ProductName'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['ProductName'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-6">
                                     <label>Giá sản phẩm</label>
                                     <input type="number" class="form-control" name="Price" placeholder="Nhập giá sản phẩm">
-                                    <?php if (isset($error['Price'])) { ?>
-                                        <p class="text-danger"> <?= $error['Price'] ?></p>
+                                    <?php if (isset($_SESSION['error']['Price'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['Price'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-6">
                                     <label>Số lượng</label>
                                     <input type="number" class="form-control" name="StockQuantity" placeholder="Nhập số lượng sản phẩm">
-                                    <?php if (isset($error['StockQuantity'])) { ?>
-                                        <p class="text-danger"> <?= $error['StockQuantity'] ?></p>
+                                    <?php if (isset($_SESSION['error']['StockQuantity'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['StockQuantity'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-6">
                                     <label>Hình ảnh sản phẩm</label>
                                     <input type="file" class="form-control" name="Image">
-                                    <?php if (isset($error['Image'])) { ?>
-                                        <p class="text-danger"> <?= $error['Image'] ?></p>
+                                    <?php if (isset($_SESSION['error']['Image'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['Image'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-6">
@@ -72,29 +72,29 @@
                                 <div class="form-group col-3">
                                     <label>Màu sắc</label>
                                     <input type="text" class="form-control" name="Color" placeholder="Nhập màu sắc">
-                                    <?php if (isset($error['Color'])) { ?>
-                                        <p class="text-danger"> <?= $error['Color'] ?></p>
+                                    <?php if (isset($_SESSION['error']['Color'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['Color'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-3">
                                     <label>Dung lượng</label>
                                     <input type="text" class="form-control" name="Storage" placeholder="Nhập dung lượng">
-                                    <?php if (isset($error['Storage'])) { ?>
-                                        <p class="text-danger"> <?= $error['Storage'] ?></p>
+                                    <?php if (isset($_SESSION['error']['Storage'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['Storage'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-3">
                                     <label>Size</label>
                                     <input type="text" class="form-control" name="Size" placeholder="Nhập size">
-                                    <?php if (isset($error['Size'])) { ?>
-                                        <p class="text-danger"> <?= $error['Size'] ?></p>
+                                    <?php if (isset($_SESSION['error']['Size'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['Size'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-3">
                                     <label>SKU</label>
                                     <input type="text" class="form-control" name="SKU" placeholder="Nhập SKU">
-                                    <?php if (isset($error['SKU'])) { ?>
-                                        <p class="text-danger"> <?= $error['SKU'] ?></p>
+                                    <?php if (isset($_SESSION['error']['SKU'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['SKU'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-12">
@@ -107,8 +107,8 @@
                                             <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
                                         <?php endforeach ?>
                                     </select>
-                                    <?php if (isset($error['CategoryID'])) { ?>
-                                        <p class="text-danger"> <?= $error['CategoryID'] ?></p>
+                                    <?php if (isset($_SESSION['error']['CategoryID'])) { ?>
+                                        <p class="text-danger"> <?= $_SESSION['error']['CategoryID'] ?></p>
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-12">
