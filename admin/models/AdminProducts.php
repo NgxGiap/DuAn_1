@@ -59,6 +59,17 @@ class AdminProducts
         :Description,
         :Image)";
 
+            //     die("$ProductName,
+            // $Price,
+            // $StockQuantity,
+            // $Color,
+            // $Storage,
+            // $Size,
+            // $SKU,
+            // $CategoryID,
+            // $Description,
+            // $Image");
+
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([

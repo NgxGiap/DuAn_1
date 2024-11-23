@@ -245,6 +245,8 @@ class AdminProductsController
             foreach ($listAlbumCurrent as $Album) {
                 $albumID = $Album['ID'];
                 // var_dump($albumID);
+                // print_r($_POST);
+                // print_r($Image_Delete);
                 // die;
                 if (in_array($albumID, $Image_Delete)) {
                     $this->modelProducts->destroyAlbum($albumID);

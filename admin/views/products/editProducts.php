@@ -148,13 +148,17 @@
                                     </thead>
                                     <tbody>
                                         <input type="hidden" name="ProductID" value="<?= $product['ProductID'] ?>">
-                                        <input type="disable" name="Image_Delete" id="Image_Delete">
-                                        <?php foreach ($listAlbum as $key => $value): ?>
+                                        <input type="hidden" name="Image_Delete" id="Image_Delete">
+                                        <?php
+
+                                        // print_r($listAlbum);
+
+                                        foreach ($listAlbum as $key => $value): ?>
                                             <tr id="faqs-row-<?= $key ?>">
-                                                <input type="hidden" name="current_image_ids" id="" value="<?= $value['ProductID'] ?>">
+                                                <input type="hidden" name="current_image_ids" id="" value="<?= $value['ID'] ?>">
                                                 <td><img src="<?= BASE_URL . $value['SRC'] ?>" style="width: 50px; height:50px" alt=""></td>
                                                 <td><input type="file" name="Image_Array[]" class="form-control"></td>
-                                                <td class="mt-10"><button type="button" class="badge badge-danger" onclick="removeRow(<?= $key ?>, <?= $value['ProductID'] ?>)"><i class="fa fa-trash"></i> Delete</button></td>
+                                                <td class="mt-10"><button type="button" class="badge badge-danger" onclick="removeRow(<?= $key ?>, <?= $value['ID'] ?>)"><i class="fa fa-trash"></i> Delete</button></td>
                                             </tr>
                                         <?php endforeach ?>
                                     </tbody>
@@ -205,12 +209,12 @@
         faqs_row++;
     }
 
-    function removeRow(rowID, imgID) {
+    function removeRow(rowID, ID) {
         $('#faqs-row-' + rowID).remove();
-        if (imgID !== null) {
+        if (ID !== null) {
             var imgDeleteInput = document.getElementById('Image_Delete')
             var currentValue = imgDeleteInput.value;
-            imgDeleteInput.value = currentValue ? currentValue + ',' + imgID : imgID;
+            imgDeleteInput.value = currentValue ? currentValue + ',' + ID : ID;
         }
     }
 </script>
