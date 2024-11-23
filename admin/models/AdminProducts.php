@@ -113,7 +113,9 @@ class AdminProducts
     public function getDetailProduct($id)
     {
         try {
-            $sql = 'SELECT * FROM `products` WHERE ProductID = :id';
+            $sql = 'SELECT `products`.*, categories.name FROM `products`
+            INNER JOIN categories ON products.CategoryID = categories.id 
+            WHERE products.ProductID = :id';
 
             $stmt = $this->conn->prepare($sql);
 
@@ -232,6 +234,23 @@ class AdminProducts
 
             $stmt->execute([
                 ':id' => $albumID
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function destroyProducts($id)
+    {
+        try {
+            $sql = "DELETE FROM `products` WHERE `ProductID`= :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':id' => $id
             ]);
 
             return true;

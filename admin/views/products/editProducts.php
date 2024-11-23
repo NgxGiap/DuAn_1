@@ -17,8 +17,12 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-11">
                     <h1>Edit sản phẩm <?= $product['ProductName'] ?></h1>
+                </div>
+                <div class="col-sm-1">
+                    <a href="<?= BASE_URL_ADMIN . '?act=list-products' ?>" class="btn btn-secondary">Cancel</a>
+
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -174,12 +178,7 @@
                 <!-- /.card -->
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <a href="#" class="btn btn-secondary">Cancel</a>
-                <input type="submit" value="Save Changes" class="btn btn-success float-right">
-            </div>
-        </div>
+
     </section>
     <!-- /.content -->
 </div>

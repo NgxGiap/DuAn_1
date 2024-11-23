@@ -258,14 +258,36 @@ class AdminProductsController
         }
     }
 
-    // public function deleteCategories()
-    // {
-    //     $id = $_GET['id'];
-    //     $category = $this->modelCategories->getDetailCategory($id);
-    //     if ($category) {
-    //         $this->modelCategories->destroyCategories($id);
-    //     }
-    //     header("Location: " . BASE_URL_ADMIN . '?act=list-categories');
-    //     exit();
-    // }
+    public function deleteProducts()
+    {
+        $ProductID = $_GET['id'];
+        $product = $this->modelProducts->getDetailProduct($ProductID);
+        $listAlbum = $this->modelProducts->getListAlbum($ProductID);
+        if ($product) {
+            deleteFile('SRC');
+            $this->modelProducts->destroyProducts($ProductID);
+        }
+        if ($listAlbum) {
+            // var_dump($listAlbum);
+            // die();
+            foreach ($listAlbum as $key => $Image) {
+                deleteFile($Image['SRC']);
+                $this->modelProducts->destroyAlbum($Image['ID']);
+            }
+        }
+        header("Location: " . BASE_URL_ADMIN . '?act=list-products');
+        exit();
+    }
+
+    public function detailProducts()
+    {
+        $id = $_GET['id'];
+        $product = $this->modelProducts->getDetailProduct($id);
+        $listAlbum = $this->modelProducts->getListAlbum($id);
+        if ($product) {
+            require_once './views/products/detailProducts.php';
+        } else {
+            header("Location: " . BASE_URL_ADMIN . '?act=list-products');
+        }
+    }
 }

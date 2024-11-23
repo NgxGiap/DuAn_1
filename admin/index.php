@@ -33,5 +33,6 @@ match ($act) {
     'form-edit-products' => (new AdminProductsController())->formEditProducts(),
     'edit-products' => (new AdminProductsController())->postEditProducts(),
     'edit-album' => (new AdminProductsController())->postEditAlbum(),
-    // 'delete-products' => (new AdminProductsController())->deleteProducts(),
+    'delete-products' => (new AdminProductsController())->deleteProducts(),
+    'detail-products' => (new AdminProductsController())->detailProducts(),
 };

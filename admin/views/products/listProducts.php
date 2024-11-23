@@ -68,13 +68,18 @@
                                             <td><?= $product['SKU'] ?></td>
                                             <td><?= $product['name'] ?></td>
                                             <td>
-                                                <a href="<?= BASE_URL_ADMIN . '?act=form-edit-products&id=' . $product['ProductID'] ?>">
-                                                    <button class="btn btn-warning">Edit</button>
-                                                </a>
-                                                <a href="<?= BASE_URL_ADMIN . '?act=delete-products&id=' . $product['ProductID'] ?>"
-                                                    onclick="return confirm('Xác nhận xóa?')">
-                                                    <button class="btn btn-danger">Del</button>
-                                                </a>
+                                                <div class="btn-group">
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=detail-products&id=' . $product['ProductID'] ?>">
+                                                        <button class="btn btn-primary">View</button>
+                                                    </a>
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=form-edit-products&id=' . $product['ProductID'] ?>">
+                                                        <button class="btn btn-warning">Edit</button>
+                                                    </a>
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=delete-products&id=' . $product['ProductID'] ?>"
+                                                        onclick="return confirm('Xác nhận xóa?')">
+                                                        <button class="btn btn-danger">Del</button>
+                                                    </a>
+                                                </div>
                                             </td>
                                         <?php endforeach ?>
                                         </tr>
