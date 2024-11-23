@@ -7,10 +7,12 @@ require_once '../commons/function.php'; // Hàm hỗ trợ
 // Require toàn bộ file Controllers
 require_once './controllers/AdminCategoriesController.php';
 require_once './controllers/AdminProductsController.php';
+require_once './controllers/AdminOrdersController.php';
 
 // Require toàn bộ file Models
 require_once './models/AdminCategories.php';
 require_once './models/AdminProducts.php';
+require_once './models/AdminOrders.php';
 // Route
 $act = $_GET['act'] ?? '/';
 
@@ -35,4 +37,11 @@ match ($act) {
     'edit-album' => (new AdminProductsController())->postEditAlbum(),
     'delete-products' => (new AdminProductsController())->deleteProducts(),
     'detail-products' => (new AdminProductsController())->detailProducts(),
+
+    // Router orders
+    'list-orders' => (new AdminOrdersController())->listOrders(),
+    // 'form-edit-orders' => (new AdminOrdersController())->formEditOrders(),
+    // 'edit-orders' => (new AdminOrdersController())->postEditOrders(),
+    // 'delete-orders' => (new AdminOrdersController())->deleteOrders(),
+    // 'detail-orders' => (new AdminOrdersController())->detailOrders(),
 };
