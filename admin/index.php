@@ -8,11 +8,13 @@ require_once '../commons/function.php'; // Hàm hỗ trợ
 require_once './controllers/AdminCategoriesController.php';
 require_once './controllers/AdminProductsController.php';
 require_once './controllers/AdminOrdersController.php';
-
+require_once './controllers/AdminReportsController.php';
+require_once './controllers/AdminAccountsController.php';
 // Require toàn bộ file Models
 require_once './models/AdminCategories.php';
 require_once './models/AdminProducts.php';
 require_once './models/AdminOrders.php';
+require_once './models/AdminAccounts.php';
 // Route
 $act = $_GET['act'] ?? '/';
 
@@ -20,6 +22,9 @@ $act = $_GET['act'] ?? '/';
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
 match ($act) {
+    // Router reports - home
+    '/' => (new AdminReportsController())->home(),
+
     // Router categories
     'list-categories' => (new AdminCategoriesController())->listCategories(),
     'form-add-categories' => (new AdminCategoriesController())->formAddCategories(),
@@ -44,4 +49,20 @@ match ($act) {
     // 'edit-orders' => (new AdminOrdersController())->postEditOrders(),
     // 'delete-orders' => (new AdminOrdersController())->deleteOrders(),
     // 'detail-orders' => (new AdminOrdersController())->detailOrders(),
+
+    // Router accounts
+    // Accounts admin
+    'list-admin' => (new AdminAccountsController())->listAccountsAdmin(),
+    'form-add-admin' => (new AdminAccountsController())->formAddAdmin(),
+    'add-admin' => (new AdminAccountsController())->postAddAdmin(),
+    'form-edit-admin' => (new AdminAccountsController())->formEditAdmin(),
+    'edit-admin' => (new AdminAccountsController())->postEditAdmin(),
+
+    'reset-password' => (new AdminAccountsController())->resetPassword(),
+
+    // Customers
+    'list-customer' => (new AdminAccountsController())->listAccountsCustomer(),
+    'form-edit-customer' => (new AdminAccountsController())->formEditCustomer(),
+    'edit-customer' => (new AdminAccountsController())->postEditCustomer(),
+    'detail-customer' => (new AdminAccountsController())->detailCustomer(),
 };
