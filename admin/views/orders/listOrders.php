@@ -61,10 +61,10 @@
                                             <td><?= $order['StatusName'] ?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="<?= BASE_URL_ADMIN . '?act=detail-orders&id=' . $product['ProductID'] ?>">
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=detail-orders&id_order=' . $order['OrderID'] ?>">
                                                         <button class="btn btn-primary">View</button>
                                                     </a>
-                                                    <a href="<?= BASE_URL_ADMIN . '?act=form-edit-orders&id=' . $product['ProductID'] ?>">
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=form-edit-orders&id_order=' . $order['OrderID'] ?>">
                                                         <button class="btn btn-warning">Edit</button>
                                                     </a>
                                                 </div>

@@ -2,6 +2,7 @@
 class AdminOrdersController
 {
     public $modelOrders;
+
     public function __construct()
     {
         $this->modelOrders = new AdminOrders();
@@ -12,101 +13,86 @@ class AdminOrdersController
         require_once './views/orders/listOrders.php';
     }
 
-    // public function formEditProducts()
-    // {
-    //     $id = $_GET['id'];
-    //     $product = $this->modelProducts->getDetailProduct($id);
-    //     $listAlbum = $this->modelProducts->getListAlbum($id);
-    //     $listCategories = $this->modelCategories->getAllCategories();
-    //     if ($product) {
-    //         require_once './views/products/editProducts.php';
-    //         deleteSessionError();
-    //     } else {
-    //         header("Location: " . BASE_URL_ADMIN . '?act=list-products');
-    //     }
-    // }
+
+    public function detailOrders()
+    {
+        $id_order = $_GET['id_order'];
+        $orders = $this->modelOrders->getDetailOrder($id_order);
+        $productOrder = $this->modelOrders->getListProductOrder($id_order);
+        // var_dump($productOrder);
+        // die();
+        $listStatusOrder = $this->modelOrders->getAllStatusOrder();
+        require_once './views/orders/detailOrder.php';
+    }
+
+    public function formEditOrders()
+    {
+        $id_order = $_GET['id_order'];
+        $orders = $this->modelOrders->getDetailOrder($id_order);
+        $listStatusOrder = $this->modelOrders->getAllStatusOrder();
+        if ($orders) {
+            require_once './views/Orders/editOrder.php';
+            deleteSessionError();
+        } else {
+            header("Location: " . BASE_URL_ADMIN . '?act=list-orders');
+        }
+    }
 
 
-    // public function postEditProducts()
-    // {
-    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //         $ProductID = $_POST['id'] ?? '';
-    //         $productOld = $this->modelProducts->getDetailProduct($ProductID);
-    //         $old_file = $productOld['Image'];
+    public function postEditOrders()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id_order = $_POST['id_order'] ?? '';
 
-    //         $ProductName = $_POST['ProductName'] ?? '';
-    //         $Price = $_POST['Price'] ?? '';
-    //         $StockQuantity = $_POST['StockQuantity'] ?? '';
-    //         $Color = $_POST['Color'] ?? '';
-    //         $Storage = $_POST['Storage'] ?? '';
-    //         $Size = $_POST['Size'] ?? '';
-    //         $SKU = $_POST['SKU'] ?? '';
-    //         $CategoryID = $_POST['CategoryID'] ?? '';
-    //         $Description = $_POST['Description'] ?? '';
-    //         $Image = $_FILES['Image'] ?? null;
+            $RecipientName = $_POST['RecipientName'] ?? '';
+            $RecipientEmail = $_POST['RecipientEmail'] ?? '';
+            $RecipientPhone = $_POST['RecipientPhone'] ?? '';
+            $RecipientAddress = $_POST['RecipientAddress'] ?? '';
+            $Note = $_POST['Note'] ?? '';
+            $order_status_id = $_POST['order_status_id'] ?? '';
 
+            $error = [];
+            if (empty($RecipientName)) {
+                $error['RecipientName'] = 'Tên người nhận không được để trống';
+            }
+            if (empty($RecipientEmail)) {
+                $error['RecipientEmail'] = 'Email người nhận không được để trống';
+            }
+            if (empty($RecipientPhone)) {
+                $error['RecipientPhone'] = 'Số điện thoại lượng người nhận không được để trống';
+            }
+            if (empty($RecipientAddress)) {
+                $error['RecipientAddress'] = 'Địa chỉ người nhận không được để trống';
+            }
+            if (empty($order_status_id)) {
+                $error['order_status_id'] = 'Trạng thái đơn hàng';
+            }
+            $_SESSION['error'] = $error;
 
-    //         $error = [];
-    //         if (empty($ProductName)) {
-    //             $error['ProductName'] = 'Tên sản phẩm không được để trống';
-    //         }
-    //         if (empty($Price)) {
-    //             $error['Price'] = 'Giá sản phẩm không được để trống';
-    //         }
-    //         if (empty($StockQuantity)) {
-    //             $error['StockQuantity'] = 'Số lượng sản phẩm không được để trống';
-    //         }
-    //         if (empty($Color)) {
-    //             $error['Color'] = 'Màu sản phẩm không được để trống';
-    //         }
-    //         if (empty($Storage)) {
-    //             $error['Storage'] = 'Dung lượng sản phẩm không được để trống';
-    //         }
-    //         if (empty($Size)) {
-    //             $error['Size'] = 'Kích thước sản phẩm không được để trống';
-    //         }
-    //         if (empty($SKU)) {
-    //             $error['SKU'] = 'SKU sản phẩm không được để trống';
-    //         }
-    //         if (empty($CategoryID)) {
-    //             $error['CategoryID'] = 'Danh mục sản phẩm phải chọn';
-    //         }
-    //         $_SESSION['error'] = $error;
+            // var_dump($error);
+            // die();
 
-    //         // logic sua anh
-    //         if (isset($Image) && $Image['error'] == UPLOAD_ERR_OK) {
-    //             $new_file = uploadFile($Image, './uploads/');
-    //             if (!empty($old_file)) {
-    //                 deleteFile($old_file);
-    //             }
-    //         } else {
-    //             $new_file = $old_file;
-    //         }
-
-    //         if (empty($error)) {
-    //             $ProductID = $this->modelProducts->updateProducts(
-    //                 $ProductID,
-    //                 $ProductName,
-    //                 $Price,
-    //                 $StockQuantity,
-    //                 $Color,
-    //                 $Storage,
-    //                 $Size,
-    //                 $SKU,
-    //                 $CategoryID,
-    //                 $Description,
-    //                 $new_file
-    //             );
-
-    //             header("Location: " . BASE_URL_ADMIN . '?act=list-products');
-    //             exit();
-    //         } else {
-    //             $_SESSION['flash'] = true;
-    //             header("Location: " . BASE_URL_ADMIN . '?act=form-edit-products&id=' . $ProductID);
-    //             exit();
-    //         }
-    //     }
-    // }
+            if (empty($error)) {
+                $abc = $this->modelOrders->updateOrders(
+                    $id_order,
+                    $RecipientName,
+                    $RecipientEmail,
+                    $RecipientPhone,
+                    $RecipientAddress,
+                    $Note,
+                    $order_status_id,
+                );
+                // var_dump($abc);
+                // die();
+                header("Location: " . BASE_URL_ADMIN . '?act=list-orders');
+                exit();
+            } else {
+                $_SESSION['flash'] = true;
+                header("Location: " . BASE_URL_ADMIN . '?act=form-edit-orders&id_order=' . $id_order);
+                exit();
+            }
+        }
+    }
 
     // public function postEditAlbum()
     // {

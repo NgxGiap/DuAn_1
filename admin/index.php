@@ -48,10 +48,10 @@ match ($act) {
 
     // Router orders
     'list-orders' => (new AdminOrdersController())->listOrders(),
-    // 'form-edit-orders' => (new AdminOrdersController())->formEditOrders(),
-    // 'edit-orders' => (new AdminOrdersController())->postEditOrders(),
+    'form-edit-orders' => (new AdminOrdersController())->formEditOrders(),
+    'edit-orders' => (new AdminOrdersController())->postEditOrders(),
     // 'delete-orders' => (new AdminOrdersController())->deleteOrders(),
-    // 'detail-orders' => (new AdminOrdersController())->detailOrders(),
+    'detail-orders' => (new AdminOrdersController())->detailOrders(),
 
     // Router accounts
     // Accounts admin
