@@ -3,10 +3,14 @@
 class AdminAccountsController
 {
     public $modelAccounts;
+    public $modelOrders;
+    public $modelProducts;
 
     public function __construct()
     {
         $this->modelAccounts = new AdminAccounts;
+        $this->modelOrders = new AdminOrders;
+        $this->modelProducts = new AdminProducts;
     }
 
     public function listAccountsAdmin()
@@ -189,5 +193,15 @@ class AdminAccountsController
                 exit();
             }
         }
+    }
+
+    public function detailCustomer()
+    {
+        $id_customer = $_GET['id_customer'];
+        $Customer = $this->modelAccounts->getDetailAccount($id_customer);
+        $listOrders = $this->modelOrders->getOrderFormCustomer($id_customer);
+        $listComments = $this->modelProducts->getCommentCustomer($id_customer);
+
+        require_once './views/accounts/customer/detailCustomer.php';
     }
 }

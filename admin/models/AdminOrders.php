@@ -25,6 +25,23 @@ class AdminOrders
         }
     }
 
+    public function getOrderFormCustomer($id)
+    {
+        try {
+            $sql = 'SELECT `orders`.*, order_statuses.StatusName FROM `orders` 
+            INNER JOIN order_statuses ON orders.order_status_id = order_statuses.id
+            WHERE orders.AccountID = :id
+            ';
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([':id' => $id]);
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     // public function insertProducts(
     //     $ProductName,
     //     $Price,

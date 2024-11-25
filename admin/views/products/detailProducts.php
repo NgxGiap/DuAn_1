@@ -157,101 +157,44 @@
 
                     </div>
                 </div>
-                <!-- <div class="row mt-4">
-                    <nav class="w-100">
-                        <div class="nav nav-tabs" id="product-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-cmt" role="tab" aria-controls="product-desc" aria-selected="true">Quản lý bình luận sản phẩm</a>
-                        </div>
-                    </nav>
-                    <div class="tab-content p-3" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="product-cmt" role="tabpanel" aria-labelledby="product-desc-tab">
-
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Tên người dùng</th>
-                                        <th>Nội dung</th>
-                                        <th>Ngày bình luận</th>
-                                        <th>Thao tác</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>NVG</td>
-                                        <td>Sản phẩm như cc </td>
-                                        <td>23/11/2024</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a href="#"><button class="btn btn-warning">Hide</button></a>
-                                                <a href="#"><button class="btn btn-danger">Del</button></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>NVG</td>
-                                        <td>Sản phẩm như cc </td>
-                                        <td>23/11/2024</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a href="#"><button class="btn btn-warning">Hide</button></a>
-                                                <a href="#"><button class="btn btn-danger">Del</button></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div> -->
-                <ul class="nav nav-tabs row mt-4" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Bình luận sản phẩm</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <table class="table table-striped table-hover">
-                            <thead>
+                <h2>Bình luận sản phẩm</h2>
+                <table class="table">
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Người dùng</th>
+                                <th>Nội dung</th>
+                                <th>Ngày đăng</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($listComments as $key => $comment): ?>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Tên người dùng</th>
-                                    <th>Nội dung</th>
-                                    <th>Ngày bình luận</th>
-                                    <th>Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>NVG</td>
-                                    <td>Sản phẩm như cc </td>
-                                    <td>23/11/2024</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="#"><button class="btn btn-warning">Hide</button></a>
-                                            <a href="#"><button class="btn btn-danger">Del</button></a>
-                                        </div>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><a href="<?= BASE_URL_ADMIN . '?act=detail-customer&id_customer=' . $comment['AccountID'] ?>">
+                                            <?= $comment['Username'] ?>
+                                        </a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>NVG</td>
-                                    <td>Sản phẩm như cc </td>
-                                    <td>23/11/2024</td>
+                                    <td><?= $comment['Content'] ?></td>
+                                    <td><?= $comment['CommentDate'] ?></td>
+                                    <td><?= $comment['Status'] ?></td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a href="#"><button class="btn btn-warning">Hide</button></a>
-                                            <a href="#"><button class="btn btn-danger">Del</button></a>
-                                        </div>
+                                        <form action="<?= BASE_URL_ADMIN . '?act=update-status-comments' ?>" method="POST">
+                                            <input type="hidden" name="CommentID" value="<?= $comment['CommentID'] ?>">
+                                            <input type="hidden" name="name_view" value="detail_product">
+                                            <button class="btn btn-warning" onclick="return confirm('Xác nhận ẩn?')">
+                                                <?= $comment['Status'] == 'hide' ? 'approved' : 'hide' ?>
+                                            </button>
+                                        </form>
                                     </td>
+                                <?php endforeach ?>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                        </tbody>
+                    </table>
+                </table>
             </div>
             <!-- /.card-body -->
         </div>

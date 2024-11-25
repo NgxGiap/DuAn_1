@@ -43,6 +43,9 @@ match ($act) {
     'delete-products' => (new AdminProductsController())->deleteProducts(),
     'detail-products' => (new AdminProductsController())->detailProducts(),
 
+    // Router comments
+    'update-status-comments' => (new AdminProductsController())->updateStatusComments(),
+
     // Router orders
     'list-orders' => (new AdminOrdersController())->listOrders(),
     // 'form-edit-orders' => (new AdminOrdersController())->formEditOrders(),

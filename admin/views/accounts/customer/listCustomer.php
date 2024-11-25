@@ -58,7 +58,7 @@
                                             <td><?= $customer['CreatedAt'] ?></td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="<?= BASE_URL_ADMIN . '?act=detail-customer&id_admin=' . $customer['AccountID'] ?>">
+                                                    <a href="<?= BASE_URL_ADMIN . '?act=detail-customer&id_customer=' . $customer['AccountID'] ?>">
                                                         <button class="btn btn-primary">Detail</button>
                                                     </a>
                                                     <a href="<?= BASE_URL_ADMIN . '?act=form-edit-customer&id_customer=' . $customer['AccountID'] ?>">

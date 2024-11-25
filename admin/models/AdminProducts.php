@@ -258,4 +258,79 @@ class AdminProducts
             echo "Error: " . $e->getMessage();
         }
     }
+
+    // Comments
+    public function getCommentCustomer($id)
+    {
+        try {
+            $sql = 'SELECT `comments`.*, products.ProductName, accounts.Username FROM `comments` 
+            INNER JOIN products ON comments.ProductID = products.ProductID
+            INNER JOIN accounts ON comments.AccountID = accounts.AccountID
+            WHERE comments.AccountID = :id
+            ';
+            // var_dump($sql);
+            // die;
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([':id' => $id]);
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getDetailComment($id)
+    {
+        try {
+            $sql = 'SELECT * FROM `comments` WHERE CommentID = :id';
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([':id' => $id]);
+
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function updateStatusComments($id, $Status)
+    {
+        try {
+            $sql = "UPDATE `comments` SET `Status`= :Status
+            WHERE CommentID = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':Status' => $Status,
+                ':id' => $id
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getCommentFromProduct($id)
+    {
+        try {
+            $sql = 'SELECT `comments`.*, products.ProductName, accounts.Username FROM `comments` 
+            INNER JOIN products ON comments.ProductID = products.ProductID
+            INNER JOIN accounts ON comments.AccountID = accounts.AccountID
+            WHERE comments.ProductID = :id
+            ';
+            // var_dump($sql);
+            // die;
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([':id' => $id]);
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

@@ -284,10 +284,37 @@ class AdminProductsController
         $id = $_GET['id'];
         $product = $this->modelProducts->getDetailProduct($id);
         $listAlbum = $this->modelProducts->getListAlbum($id);
+        $listComments = $this->modelProducts->getCommentFromProduct($id);
         if ($product) {
             require_once './views/products/detailProducts.php';
         } else {
             header("Location: " . BASE_URL_ADMIN . '?act=list-products');
+            exit();
+        }
+    }
+
+    public function updateStatusComments()
+    {
+        $CommentID = $_POST['CommentID'];
+        $name_view = $_POST['name_view'];
+        $comment = $this->modelProducts->getDetailComment($CommentID);
+        // var_dump($id_customer);
+        // die();
+        if ($comment) {
+            $updateStatus = '';
+            if ($comment['Status'] == 'approved') {
+                $updateStatus = 'hide';
+            } else {
+                $updateStatus = 'approved';
+            }
+            $status = $this->modelProducts->updateStatusComments($CommentID, $updateStatus);
+            if ($status) {
+                if ($name_view == 'detail_customer') {
+                    header("Location: " . BASE_URL_ADMIN . '?act=detail-customer&id_customer=' . $$comment['AccountID']);
+                } else {
+                    header("Location: " . BASE_URL_ADMIN . '?act=detail-products&id=' . $comment['ProductID']);
+                }
+            }
         }
     }
 }
