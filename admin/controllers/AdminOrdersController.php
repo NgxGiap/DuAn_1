@@ -73,7 +73,7 @@ class AdminOrdersController
             // die();
 
             if (empty($error)) {
-                $abc = $this->modelOrders->updateOrders(
+                $this->modelOrders->updateOrders(
                     $id_order,
                     $RecipientName,
                     $RecipientEmail,

@@ -18,6 +18,10 @@ require_once './models/AdminAccounts.php';
 // Route
 $act = $_GET['act'] ?? '/';
 
+if ($act !== 'login-admin' && $act !== 'check-login-admin' && $act !== 'logout-admin') {
+    checkLoginAdmin();
+}
+
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -68,4 +72,14 @@ match ($act) {
     'form-edit-customer' => (new AdminAccountsController())->formEditCustomer(),
     'edit-customer' => (new AdminAccountsController())->postEditCustomer(),
     'detail-customer' => (new AdminAccountsController())->detailCustomer(),
+
+    // Router info admin
+    'form-edit-info-admin' => (new AdminAccountsController())->formEditInfoAdmin(),
+    'edit-info-admin' => (new AdminAccountsController())->postEditInfoAdmin(),
+    'edit-password-admin' => (new AdminAccountsController())->postEditPasswordAdmin(),
+
+    // Router auth
+    'login-admin' => (new AdminAccountsController())->formLogin(),
+    'check-login-admin' => (new AdminAccountsController())->login(),
+    'logout-admin' => (new AdminAccountsController())->logout(),
 };

@@ -81,7 +81,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="<?= BASE_URL_ADMIN . '?act=form-edit-info-admin' ?>" class="nav-link">
                                 <i class="nav-icon far fa-user"></i>
                                 <p>Tài khoản cá nhân</p>
                             </a>

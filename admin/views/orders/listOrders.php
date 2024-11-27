@@ -57,7 +57,7 @@
                                             <td><?= $order['RecipientName'] ?></td>
                                             <td><?= $order['RecipientPhone'] ?></td>
                                             <td><?= $order['OrderDate'] ?></td>
-                                            <td><?= $order['TotalAmount'] ?></td>
+                                            <td><?= $order['TotalPrice'] ?></td>
                                             <td><?= $order['StatusName'] ?></td>
                                             <td>
                                                 <div class="btn-group">

@@ -12,8 +12,9 @@ class AdminOrders
     public function getAllOrders()
     {
         try {
-            $sql = 'SELECT `orders`.*, order_statuses.StatusName FROM `orders` 
-            INNER JOIN order_statuses ON orders.order_status_id = order_statuses.id';
+            $sql = 'SELECT `orders`.*, order_statuses.StatusName, orderdetails.TotalPrice FROM `orders` 
+            INNER JOIN order_statuses ON orders.order_status_id = order_statuses.id
+            INNER JOIN orderdetails ON orders.OrderID = orderdetails.OrderID';
 
             $stmt = $this->conn->prepare($sql);
 
@@ -46,10 +47,11 @@ class AdminOrders
     public function getDetailOrder($id)
     {
         try {
-            $sql = 'SELECT `orders`.*, order_statuses.StatusName, accounts.*, payments.PaymentMethod FROM `orders`
+            $sql = 'SELECT `orders`.*, order_statuses.StatusName, accounts.*, payments.PaymentMethod, orderdetails.* FROM `orders`
             INNER JOIN order_statuses ON orders.order_status_id = order_statuses.id 
             INNER JOIN accounts ON orders.AccountID = accounts.AccountID
             INNER JOIN payments ON orders.OrderID = payments.OrderID
+            INNER JOIN orderdetails ON orders.OrderID = orderdetails.OrderID
             WHERE orders.OrderID = :id';
 
             $stmt = $this->conn->prepare($sql);
@@ -65,11 +67,12 @@ class AdminOrders
     public function getListProductOrder($id)
     {
         try {
-            $sql = 'SELECT `orderdetails`.*, products.ProductName
+            $sql = 'SELECT `orderdetails`.*, products.*
             FROM orderdetails
             INNER JOIN products ON orderdetails.ProductID = products.ProductID
             WHERE OrderDetailID = :id';
-
+            // var_dump('OK');
+            // die();
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([':id' => $id]);

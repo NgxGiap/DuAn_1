@@ -17,6 +17,10 @@
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="<?= BASE_URL_ADMIN . '?act=logout-admin' ?>" onclick="return confirm('Xác nhận thoát?')">
+                <i class="fas fa-sign-out-alt"></i>
+            </a>
+        </li>
     </ul>
 </nav>

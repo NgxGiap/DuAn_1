@@ -29,7 +29,8 @@ class AdminCategories
         try {
             $sql = "INSERT INTO `categories`(`name`, `Description`) 
             VALUES (:name, :Description)";
-
+            // var_dump($sql);
+            // die();
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([

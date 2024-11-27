@@ -95,7 +95,7 @@
                                 Thông tin đơn hàng
                                 <address>
                                     <strong>Mã đơn hàng: <?= $orders['OrderCode'] ?></strong><br>
-                                    Tổng tiền: <?= $orders['TotalAmount'] ?><br>
+                                    Tổng tiền: <?= $orders['TotalPrice'] ?><br>
                                     Note: <?= $orders['Note'] ?><br>
                                     Phương thức thanh toán: <?= $orders['PaymentMethod'] ?><br>
                                 </address>
@@ -127,7 +127,7 @@
                                                 <td><?= $product['Quantity'] ?></td>
                                                 <td><?= $product['TotalPrice'] ?></td>
                                             </tr>
-                                            <?php $tong += ($product['PriceAtOrder']) ?>
+                                            <?php $tong += ($product['PriceAtOrder'] * $product['Quantity']) ?>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
@@ -150,14 +150,14 @@
                                                 <?= $tong ?>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <!-- <tr>
                                             <th>Vận chuyển:</th>
                                             <td>200000</td>
-                                        </tr>
+                                        </tr> -->
                                         <tr>
                                             <th>Tổng:</th>
                                             <td>
-                                                <?= $tong + 200000 ?>
+                                                <?= $tong ?>
                                             </td>
                                         </tr>
                                     </table>

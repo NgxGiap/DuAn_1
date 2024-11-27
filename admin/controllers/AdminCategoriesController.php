@@ -26,8 +26,17 @@ class AdminCategoriesController
             if (empty($categoryName)) {
                 $error['name'] = 'Tên danh mục không được để trống';
             }
+
+            // $_SESSION['error'] = $error;
+            // var_dump($_POST);
+            // die();
+
             if (empty($error)) {
-                $this->modelCategories->insertCategories($categoryName, $description);
+                // var_dump('OK');
+                // die();
+                $abc = $this->modelCategories->insertCategories($categoryName, $description);
+                // var_dump($abc);
+                // die();
                 header("Location: " . BASE_URL_ADMIN . '?act=list-categories');
             } else {
                 require_once './views/categories/addCategories.php';
