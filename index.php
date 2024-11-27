@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Require file Common
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
@@ -9,6 +9,7 @@ require_once './controllers/HomeController.php';
 
 // Require toàn bộ file Models
 require_once './models/products.php';
+require_once './models/accounts.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -29,6 +30,8 @@ match ($act) {
     'trangchu' => (new HomeController())->trangChu(),
     // BASE_URL/?act=trangchu
 
-    'products-list' => (new HomeController())->listProducts()
-    // BASE_URL/?act=products-list
+    'detail-product' => (new HomeController())->detailProduct(),
+
+    'login' => (new HomeController())->formLogin(),
+    'check-login' => (new HomeController())->postLogin(),
 };
