@@ -41,4 +41,21 @@ class Accounts
             return false;
         }
     }
+
+    public function getAccountFromEmail($Email)
+    {
+        try {
+            $sql = "SELECT * FROM `accounts` WHERE Email = :Email";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':Email' => $Email,
+            ]);
+
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

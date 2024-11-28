@@ -10,6 +10,7 @@ require_once './controllers/HomeController.php';
 // Require toàn bộ file Models
 require_once './models/products.php';
 require_once './models/accounts.php';
+require_once './models/carts.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -27,10 +28,10 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
     // Trang chủ
     '/' => (new HomeController())->home(),
-    'trangchu' => (new HomeController())->trangChu(),
-    // BASE_URL/?act=trangchu
 
     'detail-product' => (new HomeController())->detailProduct(),
+    'add-to-cart' => (new HomeController())->addToCart(),
+    'cart' => (new HomeController())->cart(),
 
     'login' => (new HomeController())->formLogin(),
     'check-login' => (new HomeController())->postLogin(),
