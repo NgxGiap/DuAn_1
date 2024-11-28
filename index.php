@@ -11,6 +11,7 @@ require_once './controllers/HomeController.php';
 require_once './models/products.php';
 require_once './models/accounts.php';
 require_once './models/carts.php';
+require_once './models/orders.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -32,7 +33,13 @@ match ($act) {
     'detail-product' => (new HomeController())->detailProduct(),
     'add-to-cart' => (new HomeController())->addToCart(),
     'cart' => (new HomeController())->cart(),
+    'check-out' => (new HomeController())->checkOut(),
+    'post-check-out' => (new HomeController())->postCheckOut(),
 
     'login' => (new HomeController())->formLogin(),
     'check-login' => (new HomeController())->postLogin(),
+
+    // Build
+
+    'minicart' => (new HomeController())->minicart(),
 };

@@ -45,7 +45,10 @@ class Accounts
     public function getAccountFromEmail($Email)
     {
         try {
-            $sql = "SELECT * FROM `accounts` WHERE Email = :Email";
+            $sql = "SELECT `accounts`.*, orders.*
+            FROM accounts
+            INNER JOIN orders ON accounts.AccountID = orders.AccountID
+            WHERE accounts.Email = :Email";
 
             $stmt = $this->conn->prepare($sql);
 

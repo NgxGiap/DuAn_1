@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Website bán điện thoại</title>
+    <title>High Tech</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,6 +35,20 @@
     <!-- main style css -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <style>
+        /* CSS Custom for Input Focus Effect */
+        .input-grow {
+            transition: width 0.4s ease;
+            /* Tạo hiệu ứng mượt */
+            width: 250px;
+            /* Chiều rộng ban đầu */
+        }
+
+        .input-grow:focus {
+            width: 350px;
+            /* Chiều rộng khi focus */
+        }
+    </style>
 </head>
 
 <body>

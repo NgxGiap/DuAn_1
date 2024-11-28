@@ -54,7 +54,7 @@
                                         class="pe-7s-search"></i></button>
                                 <form class="header-search-box d-lg-none d-xl-block">
                                     <input type="text" placeholder="Nhập tên sản phẩm cần tìm..."
-                                        class="header-search-field">
+                                        class="header-search-field input-grow">
                                     <button class="header-search-btn"><i class="pe-7s-search"></i></button>
                                 </form>
                             </div>

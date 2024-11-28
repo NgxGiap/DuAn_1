@@ -5,12 +5,14 @@ class HomeController
     public $modelProducts;
     public $modelAccounts;
     public $modelCart;
+    public $modelOrder;
 
     public function __construct()
     {
         $this->modelProducts = new Products();
         $this->modelAccounts = new Accounts();
         $this->modelCart = new Carts();
+        $this->modelOrder = new Orders();
     }
 
     public function home()
@@ -133,8 +135,7 @@ class HomeController
                 }
                 header("Location:" . BASE_URL . '?act=cart');
             } else {
-                var_dump('Chưa đăng nhập');
-                die();
+                header("Location:" . BASE_URL . '?act=login');
             }
         }
     }
@@ -156,11 +157,101 @@ class HomeController
             }
 
             require_once './views/cart.php';
-
-            header("Location:" . BASE_URL . '?act=cart');
         } else {
-            var_dump('Chưa đăng nhập');
+            header("Location:" . BASE_URL . '?act=login');
+        }
+    }
+
+    public function checkOut()
+    {
+        if (isset($_SESSION['user_client'])) {
+            $user = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
+            // var_dump($user);
+            // die();
+            $cart = $this->modelCart->getCartFromID($user['AccountID']);
+
+            if (!$cart) {
+                $cartID = $this->modelCart->addCart($user['AccountID']);
+                $cart = ['CartID' => $cartID];
+
+                $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+            } else {
+                $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+            }
+
+            require_once './views/checkOut.php';
+
+            // header("Location:" . BASE_URL . '?act=checkOut');
+        } else {
+            header("Location:" . BASE_URL . '?act=login');
+        }
+
+        require_once './views/checkOut.php';
+    }
+
+    public function postCheckOut()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            var_dump($_POST);
+            // die();
+            $RecipientName = $_POST['RecipientName'];
+            $RecipientEmail = $_POST['RecipientEmail'];
+            $RecipientPhone = $_POST['RecipientPhone'];
+            $RecipientAddress = $_POST['RecipientAddress'];
+            $Note = $_POST['Note'];
+            $TotalAmount = $_POST['TotalAmount'];
+            $paymentmethod = intval($_POST['paymentmethod']);
+
+            $OrderDate = new DateTime();
+            $formattedDate = $OrderDate->format('Y-m-d H:i:s');
+            var_dump($formattedDate);
             die();
+            $Status = 1;
+            $user = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
+            $AccountID = $user['AccountID'];
+
+            $OrderCode = 'DH-' . rand(1000, 9999);
+            // var_dump($RecipientName, $RecipientEmail, $RecipientPhone, $RecipientAddress, $Note, $TotalAmount, $paymentmethod, $OrderDate, $formattedDate, $Status, $AccountID);
+            // die();
+
+            $this->modelOrder->addOrder(
+                $AccountID,
+                $RecipientName,
+                $RecipientEmail,
+                $RecipientAddress,
+                $Note,
+                $TotalAmount,
+                $paymentmethod,
+                $formattedDate,
+                $OrderCode,
+                $Status,
+
+            );
+            var_dump('Add done');
+            die();
+        }
+    }
+
+    // Build
+    public function minicart()
+    {
+        if (isset($_SESSION['user_client'])) {
+            $mail = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
+
+            $cart = $this->modelCart->getCartFromID($mail['AccountID']);
+
+            if (!$cart) {
+                $cartID = $this->modelCart->addCart($mail['AccountID']);
+                $cart = ['CartID' => $cartID];
+
+                $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+            } else {
+                $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+            }
+
+            require_once './views/layout/miniCart.php';
+        } else {
+            header("Location:" . BASE_URL . '?act=login');
         }
     }
 }

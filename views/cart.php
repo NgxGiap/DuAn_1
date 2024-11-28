@@ -139,7 +139,7 @@ require_once 'layout/menu.php';
                                     </table>
                                 </div>
                             </div>
-                            <a href="checkout.html"
+                            <a href="<?= BASE_URL . '?act=check-out' ?>"
                                 class="btn btn-sqr d-block">Proceed
                                 Checkout</a>
                         </div>
