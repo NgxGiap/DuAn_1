@@ -48,8 +48,8 @@ function deleteSessionError()
 {
     if (isset($_SESSION['flash'])) {
         unset($_SESSION['flash']);
-        session_unset($_SESSION['error']);
-        session_unset($_SESSION['success']);
+        unset($_SESSION['error']);
+        unset($_SESSION['success']);
         // session_destroy();
     }
 }
