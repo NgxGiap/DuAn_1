@@ -87,5 +87,6 @@ class Products
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
+        require_once './views/layout/menu.php';
     }
 }

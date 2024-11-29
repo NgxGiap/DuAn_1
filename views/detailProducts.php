@@ -103,10 +103,7 @@ require_once 'layout/menu.php';
                                         <h6 class="option-title">size
                                             :</h6>
                                         <select class="nice-select">
-                                            <option>5 inch</option>
-                                            <option>5.5 inch</option>
-                                            <option>6 inch</option>
-                                            <option>6.5 inch</option>
+                                            <option><?= $product['Size'] ?></option>
                                         </select>
                                     </div>
                                     <div class="color-option">

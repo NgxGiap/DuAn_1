@@ -32,7 +32,9 @@
                                         <li><a href="#">Sản phẩm <i
                                                     class="fa fa-angle-down"></i></a>
                                             <ul class="dropdown">
-                                                <li><a href="blog-left-sidebar.html">blog left sidebar</a></li>
+                                                <?php foreach ($listProductxCategory as $category): ?>
+                                                    <li><a href="blog-left-sidebar.html"><?= $category['CategoryName'] ?></a></li>
+                                                <?php endforeach ?>
                                             </ul>
                                         </li>
                                         <li><a href="#">Giới thiệu</a></li>
