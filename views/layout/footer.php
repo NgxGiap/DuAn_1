@@ -19,8 +19,7 @@
                             </div>
                         </div>
                         <div class="widget-body">
-                            <p>We are a team of designers and developers that create high quality wordpress,
-                                shopify, Opencart </p>
+                            <p>We are a team of designers and developers that create high quality wordpress, shopify, Opencart </p>
                         </div>
                     </div>
                 </div>
@@ -33,8 +32,7 @@
                                     <li><i class="pe-7s-home"></i> 4710-4890 Breckinridge USA</li>
                                     <li><i class="pe-7s-mail"></i> <a
                                             href="mailto:demo@plazathemes.com">demo@yourdomain.com </a></li>
-                                    <li><i class="pe-7s-call"></i> <a href="tel:(012)800456789987">(012) 800 456
-                                            789-987</a></li>
+                                    <li><i class="pe-7s-call"></i> <a href="tel:(012)800456789987">(012) 800 456 789-987</a></li>
                                 </ul>
                             </address>
                         </div>

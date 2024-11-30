@@ -8,6 +8,7 @@
             </div>
             <div class="minicart-content-box">
                 <?php
+                $cartdetail =  (new HomeController())->minicart();
                 $totalCart = 0;
                 foreach ($cartdetail as $key => $product):
                 ?>

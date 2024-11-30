@@ -89,4 +89,19 @@ class Products
         }
         require_once './views/layout/menu.php';
     }
+
+    public function getAllCategories()
+    {
+        try {
+            $sql = "SELECT * FROM `categories`";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

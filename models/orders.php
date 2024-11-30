@@ -29,7 +29,7 @@ class Orders
                         RecipientAddress,
                         Note,
                         TotalAmount,
-                        paymentmethod,
+                        payment_method_id,
                         OrderDate,
                         OrderCode,
                         Status) 
@@ -40,11 +40,11 @@ class Orders
                         :RecipientAddress,
                         :Note,
                         :TotalAmount,
-                        :paymentmethod,
+                        :payment_method_id,
                         :formattedDate,
                         :OrderCode,
                         :Status)";
-
+            // echo $sql;
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([
@@ -54,11 +54,14 @@ class Orders
                 ':RecipientAddress' => $RecipientAddress,
                 ':Note' => $Note,
                 ':TotalAmount' => $TotalAmount,
-                ':paymentmethod' => $paymentmethod,
-                ':OrderDate' => $formattedDate,
+                ':payment_method_id' => $paymentmethod,
+                ':formattedDate' => $formattedDate,
                 ':OrderCode' => $OrderCode,
                 ':Status' => $Status
             ]);
+
+
+
 
             return $this->conn->lastInsertId();
         } catch (Exception $e) {

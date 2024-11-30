@@ -42,6 +42,45 @@ class Accounts
         }
     }
 
+    public function checkRegister($Email)
+    {
+        try {
+            $sql = "SELECT Email FROM accounts WHERE Email = :Email";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute(['Email' => $Email]);
+
+            $user = $stmt->fetch();
+            return $user;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return null;
+        }
+    }
+
+
+
+    public function insetAccount($Username, $Email, $PasswordHash)
+    {
+        try {
+            $sql = "INSERT INTO `accounts`(`Username`, `Email`, `PasswordHash`) 
+            VALUES (:Username, :Email, :PasswordHash)";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':Username' => $Username,
+                ':Email' => $Email,
+                ':PasswordHash' => $PasswordHash
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function getAccountFromEmail($Email)
     {
         try {

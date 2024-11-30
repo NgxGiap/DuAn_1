@@ -32,8 +32,13 @@
                                         <li><a href="#">Sản phẩm <i
                                                     class="fa fa-angle-down"></i></a>
                                             <ul class="dropdown">
-                                                <?php foreach ($listProductxCategory as $category): ?>
-                                                    <li><a href="blog-left-sidebar.html"><?= $category['CategoryName'] ?></a></li>
+                                                <?php
+                                                $listProductxCategory =  (new HomeController())->listCategories();
+                                                // var_dump($listProductxCategory);
+                                                // die();
+                                                foreach ($listProductxCategory as $category):
+                                                ?>
+                                                    <li><a href="#"><?= $category['name'] ?></a></li>
                                                 <?php endforeach ?>
                                             </ul>
                                         </li>
@@ -74,8 +79,10 @@
                                         <ul class="dropdown-list">
                                             <?php if (!isset($_SESSION['user_client'])) { ?>
                                                 <li><a href="<?= BASE_URL . '?act=login' ?>">Đăng nhập</a></li>
+                                                <li><a href="<?= BASE_URL . '?act=register' ?>">Đăng ký</a></li>
                                             <?php } else { ?>
-                                                <li><a href="my-account.html">Tài khoản</a></li>
+                                                <li><a href="#">Tài khoản</a></li>
+                                                <li><a href="<?= BASE_URL . '?act=logout' ?>">Đăng xuất</a></li>
                                             <?php } ?>
                                         </ul>
                                     </li>

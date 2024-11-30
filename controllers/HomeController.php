@@ -76,11 +76,47 @@ class HomeController
         }
     }
 
+    public function formRegister()
+    {
+        require_once './views/auth/formRegister.php';
+
+        deleteSessionError();
+    }
+
+    public function postRegister()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $Username = $_POST['Username'];
+            $Email = $_POST['Email'];
+            $PasswordHash = password_hash($_POST['PasswordHash'], PASSWORD_BCRYPT);
+            // var_dump($PasswordHash);
+            // die();
+
+            $user = $this->modelAccounts->checkRegister($Email);
+            // var_dump($user);
+            // die();
+            if (empty($user)) {
+                $user = $this->modelAccounts->insetAccount($Username, $Email, $PasswordHash);
+
+                header("Location:" . BASE_URL . '?act=login');
+                // var_dump($user);
+                // exit();
+            } else {
+                $_SESSION['error'] = 'Email đã được sử dụng!';
+                // var_dump($_SESSION['error']);
+                // die();
+                $_SESSION['flash'] = true;
+                header("Location:" . BASE_URL . '?act=register');
+                exit();
+            }
+        }
+    }
+
     // public function logout()
     // {
     //     if (isset($_SESSION['user_admin'])) {
     //         unset($_SESSION['user_admin']);
-    //         header("Location:" . BASE_URL_ADMIN . '?act=login-admin');
+    //         header("Location:" . BASE_URL );
     //     }
     // }
 
@@ -142,9 +178,12 @@ class HomeController
 
     public function cart()
     {
+        // var_dump($_SESSION['user_client']);
+        // die();
         if (isset($_SESSION['user_client'])) {
             $mail = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
-
+            // var_dump($mail);
+            // die();
             $cart = $this->modelCart->getCartFromID($mail['AccountID']);
 
             if (!$cart) {
@@ -192,7 +231,8 @@ class HomeController
     public function postCheckOut()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            var_dump($_POST);
+            // echo '<pre>';
+            // var_dump($_POST);
             // die();
             $RecipientName = $_POST['RecipientName'];
             $RecipientEmail = $_POST['RecipientEmail'];
@@ -204,9 +244,9 @@ class HomeController
 
             $OrderDate = new DateTime();
             $formattedDate = $OrderDate->format('Y-m-d H:i:s');
-            var_dump($formattedDate);
-            die();
-            $Status = 1;
+            // var_dump($formattedDate);
+            // die();
+            $Status = '1';
             $user = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
             $AccountID = $user['AccountID'];
 
@@ -224,17 +264,18 @@ class HomeController
                 $paymentmethod,
                 $formattedDate,
                 $OrderCode,
-                $Status,
+                $Status
 
             );
-            var_dump('Add done');
-            die();
+            // echo ('Add done </pre>');
+            // die();
         }
     }
 
     // Build
     public function minicart()
     {
+        $cartdetail = [];
         if (isset($_SESSION['user_client'])) {
             $mail = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
 
@@ -248,10 +289,30 @@ class HomeController
             } else {
                 $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
             }
+        }
+        return $cartdetail;
+        // else {
+        //     header("Location:" . BASE_URL . '?act=login');
+        // }
+        // die("ssssssssss");
+        // require_once './views/layout/miniCart.php';
+    }
 
-            require_once './views/layout/miniCart.php';
-        } else {
-            header("Location:" . BASE_URL . '?act=login');
+    public function listCategories()
+    {
+        $listProductxCategory = $this->modelProducts->getAllCategories();
+
+        // var_dump($listProductxCategory);
+        // die();
+
+        return $listProductxCategory;
+    }
+
+    public function logout()
+    {
+        if (isset($_SESSION['user_client'])) {
+            unset($_SESSION['user_client']);
+            header("Location:" . BASE_URL);
         }
     }
 }

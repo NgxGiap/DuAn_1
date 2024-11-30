@@ -51,7 +51,8 @@ class Carts
     {
         try {
             $sql = "INSERT INTO `carts`(`AccountID`) VALUES (:id)";
-
+            // var_dump($id);
+            // die();
             $stmt = $this->conn->prepare($sql);
 
             $stmt->execute([

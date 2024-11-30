@@ -39,7 +39,9 @@ match ($act) {
     'login' => (new HomeController())->formLogin(),
     'check-login' => (new HomeController())->postLogin(),
 
-    // Build
 
-    'minicart' => (new HomeController())->minicart(),
+    'register' => (new HomeController())->formRegister(),
+    'check-register' => (new HomeController())->postRegister(),
+
+    'logout' => (new HomeController())->logout(),
 };
