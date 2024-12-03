@@ -29,7 +29,7 @@
 
                                         </li>
 
-                                        <li><a href="#">Sản phẩm <i
+                                        <li><a href="<?= BASE_URL . '?act=list-products' ?> ">Sản phẩm <i
                                                     class="fa fa-angle-down"></i></a>
                                             <ul class="dropdown">
                                                 <?php
@@ -43,7 +43,7 @@
                                             </ul>
                                         </li>
                                         <li><a href="#">Giới thiệu</a></li>
-                                        <li><a href="#">Liên hệ</a></li>
+                                        <li><a href="?act=contact-us">Liên hệ</a></li>
                                     </ul>
                                 </nav>
                                 <!-- main menu navbar end -->
@@ -80,8 +80,9 @@
                                             <?php if (!isset($_SESSION['user_client'])) { ?>
                                                 <li><a href="<?= BASE_URL . '?act=login' ?>">Đăng nhập</a></li>
                                                 <li><a href="<?= BASE_URL . '?act=register' ?>">Đăng ký</a></li>
+                                                <li><a href="<?= BASE_URL_ADMIN . '?act=login-admin' ?>">Đăng nhập Admin</a></li>
                                             <?php } else { ?>
-                                                <li><a href="#">Tài khoản</a></li>
+                                                <li><a href="<?= BASE_URL . '?act=form-edit-info' ?>">Tài khoản</a></li>
                                                 <li><a href="<?= BASE_URL . '?act=logout' ?>">Đăng xuất</a></li>
                                             <?php } ?>
                                         </ul>
@@ -89,7 +90,18 @@
                                     <li>
                                         <a href="#" class="minicart-btn">
                                             <i class="pe-7s-shopbag"></i>
-                                            <div class="notification">2</div>
+                                            <div class="notification">
+                                                <?php
+                                                $Quantity = 0;
+                                                $cartdetail =  (new HomeController())->minicart();
+                                                foreach ($cartdetail as $key => $product):
+                                                ?>
+                                                    <?php
+                                                    $Quantity += $product['Quantity'];
+                                                    ?>
+                                                <?php endforeach ?>
+                                                <?php echo $Quantity; ?>
+                                            </div>
                                         </a>
                                     </li>
                                 </ul>

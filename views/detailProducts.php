@@ -20,7 +20,7 @@ require_once 'layout/menu.php';
                                         href="<?= BASE_URL ?>"><i
                                             class="fa fa-home"></i></a></li>
                                 <li class="breadcrumb-item"><a
-                                        href="shop.html">Sản phẩm</a></li>
+                                        href="?act=list-products">Sản phẩm</a></li>
                                 <li class="breadcrumb-item active"
                                     aria-current="page">Chi tiết sản phẩm</li>
                             </ul>

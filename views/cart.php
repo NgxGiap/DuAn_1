@@ -18,10 +18,8 @@ require_once 'layout/menu.php';
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a
-                                        href="index.html"><i
+                                        href="<?= BASE_URL ?>"><i
                                             class="fa fa-home"></i></a></li>
-                                <li class="breadcrumb-item"><a
-                                        href="shop.html">shop</a></li>
                                 <li class="breadcrumb-item active"
                                     aria-current="page">cart</li>
                             </ul>
@@ -102,15 +100,13 @@ require_once 'layout/menu.php';
                                 <form action="#" method="post"
                                     class=" d-block d-md-flex">
                                     <input type="text"
-                                        placeholder="Enter Your Coupon Code"
+                                        placeholder="Nhập mã giảm giá"
                                         required />
-                                    <button class="btn btn-sqr">Apply
-                                        Coupon</button>
+                                    <button class="btn btn-sqr">Áp dụng</button>
                                 </form>
                             </div>
                             <div class="cart-update">
-                                <a href="#" class="btn btn-sqr">Update
-                                    Cart</a>
+                                <a href="#" class="btn btn-sqr">Cập nhật đơn hàng</a>
                             </div>
                         </div>
                     </div>
@@ -140,8 +136,7 @@ require_once 'layout/menu.php';
                                 </div>
                             </div>
                             <a href="<?= BASE_URL . '?act=check-out' ?>"
-                                class="btn btn-sqr d-block">Proceed
-                                Checkout</a>
+                                class="btn btn-sqr d-block">Tiến hành thanh toán</a>
                         </div>
                     </div>
                 </div>

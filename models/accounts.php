@@ -100,4 +100,84 @@ class Accounts
             echo "Error: " . $e->getMessage();
         }
     }
+
+    public function getDetailAccount($id)
+    {
+        try {
+            $sql = "SELECT * FROM `accounts` WHERE AccountID = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':id' => $id,
+            ]);
+
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function updateAccount($id, $Username, $Email, $FullName, $Phone)
+    {
+        try {
+            $sql = "UPDATE `accounts` SET 
+            `Username`= :Username,
+            `Email`= :Email,
+            `FullName`= :FullName,
+            `Phone`= :Phone
+            WHERE AccountID = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':Username' => $Username,
+                ':Email' => $Email,
+                ':FullName' => $FullName,
+                ':Phone' => $Phone,
+                ':id' => $id
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function resetPassword($id, $PasswordHash)
+    {
+        try {
+            $sql = "UPDATE `accounts` SET 
+            `PasswordHash`= :PasswordHash
+            WHERE AccountID = :id";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':PasswordHash' => $PasswordHash,
+                ':id' => $id
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getAccountFormEmail($Email)
+    {
+        try {
+            $sql = "SELECT * FROM `accounts` WHERE Email = :Email";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':Email' => $Email,
+            ]);
+
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

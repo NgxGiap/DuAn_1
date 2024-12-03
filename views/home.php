@@ -382,12 +382,12 @@ require_once 'layout/menu.php';
                                     <div class="group-slide-item">
                                         <div class="group-item">
                                             <div class="group-item-thumb">
-                                                <a href="product-details.html">
+                                                <a href="<?= BASE_URL . '?act=detail-product&id=' . $product['ProductID'] ?>">
                                                     <img src="<?= $product['Image'] ?>" alt="">
                                                 </a>
                                             </div>
                                             <div class="group-item-desc">
-                                                <h5 class="group-product-name"><a href="product-details.html">
+                                                <h5 class="group-product-name"><a href="<?= BASE_URL . '?act=detail-product&id=' . $product['ProductID'] ?>">
                                                         <?= $product['ProductName'] ?></a></h5>
                                                 <div class="price-box">
                                                     <span class="price-regular"><?= formatPrice($product['Price']) . 'đ' ?></span>
@@ -419,12 +419,12 @@ require_once 'layout/menu.php';
                                     <div class="group-slide-item">
                                         <div class="group-item">
                                             <div class="group-item-thumb">
-                                                <a href="product-details.html">
+                                                <a href="<?= BASE_URL . '?act=detail-product&id=' . $product['ProductID'] ?>">
                                                     <img src="<?= $product['Image'] ?>" alt="">
                                                 </a>
                                             </div>
                                             <div class="group-item-desc">
-                                                <h5 class="group-product-name"><a href="product-details.html">
+                                                <h5 class="group-product-name"><a href="<?= BASE_URL . '?act=detail-product&id=' . $product['ProductID'] ?>">
                                                         <?= $product['ProductName'] ?></a></h5>
                                                 <div class="price-box">
                                                     <span class="price-regular"><?= formatPrice($product['Price']) . 'đ' ?></span>

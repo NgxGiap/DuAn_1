@@ -44,4 +44,12 @@ match ($act) {
     'check-register' => (new HomeController())->postRegister(),
 
     'logout' => (new HomeController())->logout(),
+
+    // Router info
+    'form-edit-info' => (new HomeController())->formEditInfo(),
+    'edit-info' => (new HomeController())->postEditInfo(),
+    'edit-password' => (new HomeController())->postEditPassword(),
+
+    'list-products' => (new HomeController())->listProducts(),
+    'contact-us' => (new HomeController())->contactUs(),
 };

@@ -276,26 +276,29 @@ class HomeController
     public function minicart()
     {
         $cartdetail = [];
+        // var_dump($cartdetail);
         if (isset($_SESSION['user_client'])) {
+            // var_dump('ccc');
             $mail = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
 
-            $cart = $this->modelCart->getCartFromID($mail['AccountID']);
+            if ($mail != false) {
+                $cart = $this->modelCart->getCartFromID($mail['AccountID']);
+                // var_dump($cart);
+                if (!$cart) {
+                    $cartID = $this->modelCart->addCart($mail['AccountID']);
+                    $cart = ['CartID' => $cartID];
 
-            if (!$cart) {
-                $cartID = $this->modelCart->addCart($mail['AccountID']);
-                $cart = ['CartID' => $cartID];
-
-                $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
-            } else {
-                $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+                    $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+                } else {
+                    $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+                }
             }
         }
+        // var_dump($cartdetail);
+        // die();
+
+
         return $cartdetail;
-        // else {
-        //     header("Location:" . BASE_URL . '?act=login');
-        // }
-        // die("ssssssssss");
-        // require_once './views/layout/miniCart.php';
     }
 
     public function listCategories()
@@ -314,5 +317,125 @@ class HomeController
             unset($_SESSION['user_client']);
             header("Location:" . BASE_URL);
         }
+    }
+
+    public function formEditInfo()
+    {
+        $Email = $_SESSION['user_client'];
+        $info = $this->modelAccounts->getAccountFormEmail($Email);
+        // var_dump($info);
+        // die();
+        require_once './views/auth/formEditInfo.php';
+        deleteSessionError();
+    }
+
+    public function postEditPassword()
+    {
+        // var_dump($_POST);
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $old_pass = $_POST['old_pass'];
+            $new_pass = $_POST['new_pass'];
+            $confirm_pass = $_POST['confirm_pass'];
+
+
+            $user = $this->modelAccounts->getAccountFormEmail($_SESSION['user_client']);
+
+            $checkPass = password_verify($old_pass, $user['PasswordHash']);
+
+            $error = [];
+            if (!$checkPass) {
+                $error['old_pass'] = 'Mật khẩu người dùng không chính xác!';
+            }
+            if ($new_pass !== $confirm_pass) {
+                $error['confirm_pass'] = 'Mật khẩu nhập lại không chính xác!';
+            }
+            if (empty($old_pass)) {
+                $error['old_pass'] = 'Vui lòng nhập dữ liệu!';
+            }
+            if (empty($new_pass)) {
+                $error['new_pass'] = 'Vui lòng nhập dữ liệu!';
+            }
+            if (empty($confirm_pass)) {
+                $error['confirm_pass'] = 'Vui lòng nhập dữ liệu!';
+            }
+            $_SESSION['error'] = $error;
+            if (!$error) {
+                $PasswordHash = password_hash($new_pass, PASSWORD_BCRYPT);
+                $status = $this->modelAccounts->resetPassword($user['AccountID'], $PasswordHash);
+                if ($status) {
+                    // var_dump($status);
+                    // die;
+                    $_SESSION['success'] = "Đổi mật khẩu thành công";
+
+                    $_SESSION['flash'] = true;
+                    header("Location:" . BASE_URL . '?act=form-edit-info');
+                }
+            } else {
+                // var_dump($_SESSION['error']);
+                // die();
+                $_SESSION['flash'] = true;
+                header("Location:" . BASE_URL . '?act=form-edit-info');
+                exit();
+            }
+        }
+    }
+
+    public function postEditInfo()
+    {
+        // var_dump($_POST);
+        // die();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $AccountID = $_POST['AccountID'];
+            $old_Username = $_POST['Username'];
+            $old_FullName = $_POST['FullName'];
+            $old_Phone = $_POST['Phone'];
+            $old_Email = $_POST['Email'];
+
+
+            $info = $this->modelAccounts->getAccountFormEmail($_SESSION['user_client']);
+
+            $error = [];
+            if (empty($old_Email)) {
+                $error['old_Email'] = 'Vui lòng nhập dữ liệu!';
+            }
+            $_SESSION['error'] = $error;
+            if (!$error) {
+                $status = $this->modelAccounts->updateAccount($AccountID, $old_Username, $old_Email, $old_FullName, $old_Phone);
+                if ($status) {
+                    // var_dump($status);
+                    // die;
+                    $_SESSION['successInfo'] = "Đổi thông tin thành công";
+
+                    $_SESSION['flash'] = true;
+                    header("Location:" . BASE_URL . '?act=form-edit-info');
+                }
+            } else {
+                // var_dump($_SESSION['error']);
+                // die();
+                $_SESSION['flash'] = true;
+                header("Location:" . BASE_URL . '?act=form-edit-info');
+                exit();
+            }
+        }
+    }
+
+    public function listProducts()
+    {
+        $listProducts = $this->modelProducts->getAllProducts();
+        require_once './views/listProducts.php';
+    }
+
+    public function listProductsxCategories($CategoryName)
+    {
+        $listProductCate = $this->modelProducts->getProductsxCategories($CategoryName);
+
+        return $listProductCate;
+    }
+
+    // public function postCmt() {}
+
+    public function contactUs()
+    {
+        require_once './views/contactUs.php';
     }
 }

@@ -104,4 +104,18 @@ class Products
             echo "Error: " . $e->getMessage();
         }
     }
+    public function getProductsxCategories($CategoryName)
+    {
+        try {
+            $sql = 'SELECT `products`.*, categories.name
+            FROM products
+            INNER JOIN categories ON products.CategoryID = categories.id
+            WHERE categories.name = :CategoryName';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

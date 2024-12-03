@@ -52,10 +52,10 @@ require_once 'layout/menu.php';
                                                 method="post"
                                                 class=" d-block d-md-flex">
                                                 <input type="text"
-                                                    placeholder="Enter Your Coupon Code"
+                                                    placeholder="Nhập mã giảm giá"
                                                     required />
                                                 <button
-                                                    class="btn btn-sqr">Xác nhận</button>
+                                                    class="btn btn-sqr">Áp dụng</button>
                                             </form>
                                         </div>
                                     </div>
