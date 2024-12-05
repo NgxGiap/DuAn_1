@@ -13,6 +13,7 @@ class Orders
         $AccountID,
         $RecipientName,
         $RecipientEmail,
+        $RecipientPhone,
         $RecipientAddress,
         $Note,
         $TotalAmount,
@@ -26,6 +27,7 @@ class Orders
                         AccountID,
                         RecipientName,
                         RecipientEmail,
+                        RecipientPhone,
                         RecipientAddress,
                         Note,
                         TotalAmount,
@@ -37,6 +39,7 @@ class Orders
                         :AccountID,
                         :RecipientName,
                         :RecipientEmail,
+                        :RecipientPhone,
                         :RecipientAddress,
                         :Note,
                         :TotalAmount,
@@ -51,6 +54,7 @@ class Orders
                 ':AccountID' => $AccountID,
                 ':RecipientName' => $RecipientName,
                 ':RecipientEmail' => $RecipientEmail,
+                ':RecipientPhone' => $RecipientPhone,
                 ':RecipientAddress' => $RecipientAddress,
                 ':Note' => $Note,
                 ':TotalAmount' => $TotalAmount,
@@ -64,6 +68,24 @@ class Orders
 
 
             return $this->conn->lastInsertId();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function addOrderDetail($OrderID, $ProductID, $Quantity, $PriceAtOrder, $TotalPrice)
+    {
+        try {
+            $sql = "INSERT INTO orderdetails (OrderID, ProductID, Quantity, PriceAtOrder, TotalPrice)
+                VALUES (:OrderID, :ProductID, :Quantity, :PriceAtOrder, :TotalPrice)";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':OrderID' => $OrderID,
+                ':ProductID' => $ProductID,
+                ':Quantity' => $Quantity,
+                ':PriceAtOrder' => $PriceAtOrder,
+                ':TotalPrice' => $TotalPrice
+            ]);
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }

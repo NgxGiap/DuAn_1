@@ -236,9 +236,6 @@ class HomeController
     public function postCheckOut()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // echo '<pre>';
-            // var_dump($_POST);
-            // die();
             $RecipientName = $_POST['RecipientName'];
             $RecipientEmail = $_POST['RecipientEmail'];
             $RecipientPhone = $_POST['RecipientPhone'];
@@ -246,23 +243,19 @@ class HomeController
             $Note = $_POST['Note'];
             $TotalAmount = $_POST['TotalAmount'];
             $paymentmethod = intval($_POST['paymentmethod']);
-
             $OrderDate = new DateTime();
             $formattedDate = $OrderDate->format('Y-m-d H:i:s');
-            // var_dump($formattedDate);
-            // die();
             $Status = '1';
             $user = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
             $AccountID = $user['AccountID'];
-
             $OrderCode = 'DH-' . rand(1000, 9999);
-            // var_dump($RecipientName, $RecipientEmail, $RecipientPhone, $RecipientAddress, $Note, $TotalAmount, $paymentmethod, $OrderDate, $formattedDate, $Status, $AccountID);
-            // die();
 
-            $this->modelOrder->addOrder(
+            // Thêm đơn hàng
+            $orderID = $this->modelOrder->addOrder(
                 $AccountID,
                 $RecipientName,
                 $RecipientEmail,
+                $RecipientPhone,
                 $RecipientAddress,
                 $Note,
                 $TotalAmount,
@@ -270,12 +263,34 @@ class HomeController
                 $formattedDate,
                 $OrderCode,
                 $Status
-
             );
-            // echo ('Add done </pre>');
-            // die();
+
+            if ($orderID) {
+                // Lấy chi tiết giỏ hàng hiện tại
+                $cart = $this->modelCart->getCartFromID($AccountID);
+                $cartDetails = $this->modelCart->getCartDetail($cart['CartID']);
+
+                // Thêm từng sản phẩm trong giỏ hàng vào bảng orderdetail
+                foreach ($cartDetails as $cartItem) {
+                    $this->modelOrder->addOrderDetail(
+                        $orderID,
+                        $cartItem['ProductID'],
+                        $cartItem['Quantity'],
+                        $cartItem['Price'],
+                        $cartItem['Quantity'] * $cartItem['Price']
+                    );
+                }
+
+                // Xóa giỏ hàng sau khi thêm xong
+                $this->modelCart->clearCart($cart['CartID']);
+            }
+
+            echo "<script>alert('Thanh toán thành công! Cảm ơn bạn đã mua hàng.');</script>";
+            echo "<script>window.location.href = '" . BASE_URL . "';</script>";
         }
     }
+
+
 
     // Build
     public function minicart()

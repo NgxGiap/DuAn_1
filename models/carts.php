@@ -103,4 +103,15 @@ class Carts
             echo "Error: " . $e->getMessage();
         }
     }
+
+    public function clearCart($CartID)
+    {
+        try {
+            $sql = "DELETE FROM cartdetails WHERE CartID = :CartID";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([':CartID' => $CartID]);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

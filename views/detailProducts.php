@@ -92,6 +92,7 @@ require_once 'layout/menu.php';
                                             <h6 class="option-title">Số lượng:</h6>
                                             <div class="quantity">
                                                 <input type="hidden" name="ProductID" value="<?= $product['ProductID'] ?>">
+
                                                 <div class="pro-qty"><input type="text" value="1" name="Quantity"></div>
                                             </div>
                                             <div class="action_link">
@@ -183,6 +184,7 @@ require_once 'layout/menu.php';
                                             <?php endforeach ?>
                                             <form action="<?= BASE_URL ?>?act=add-comment" method="POST" class="review-form">
                                                 <input type="hidden" name="ProductID" value="<?= $product['ProductID'] ?>">
+
                                                 <div
                                                     class="form-group row">
                                                     <div class="col">
