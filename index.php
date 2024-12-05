@@ -12,6 +12,7 @@ require_once './models/products.php';
 require_once './models/accounts.php';
 require_once './models/carts.php';
 require_once './models/orders.php';
+require_once './models/comments.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -51,5 +52,9 @@ match ($act) {
     'edit-password' => (new HomeController())->postEditPassword(),
 
     'list-products' => (new HomeController())->listProducts(),
+    'search-products' => (new HomeController())->searchProducts(),
+
     'contact-us' => (new HomeController())->contactUs(),
+
+    'add-comment' => (new HomeController())->addComment(),
 };

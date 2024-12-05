@@ -6,6 +6,7 @@ class HomeController
     public $modelAccounts;
     public $modelCart;
     public $modelOrder;
+    public $modelComments;
 
     public function __construct()
     {
@@ -13,6 +14,7 @@ class HomeController
         $this->modelAccounts = new Accounts();
         $this->modelCart = new Carts();
         $this->modelOrder = new Orders();
+        $this->modelComments = new Comments();
     }
 
     public function home()
@@ -32,7 +34,7 @@ class HomeController
         $listAlbum = $this->modelProducts->getListAlbum($id);
         $listComments = $this->modelProducts->getCommentFromProduct($id);
 
-        $listProductxCategory = $this->modelProducts->getListProductCategory($product['CategoryID']);
+        $listProductsxCategory = $this->modelProducts->getListProductCategory($product['CategoryID']);
         // var_dump($listProductxCategory);
         // die();
         if ($product) {
@@ -57,12 +59,15 @@ class HomeController
             $PasswordHash = $_POST['PasswordHash'];
             // var_dump($PasswordHash);
             // die();
-
+            $AccountID = $this->modelAccounts->getAccountFromEmail($Email);
+            // var_dump($AccountID['AccountID']);
+            // die();
             $user = $this->modelAccounts->checkLogin($Email, $PasswordHash);
             // var_dump($user);
             // die();
             if ($user == $Email) {
                 $_SESSION['user_client'] = $user;
+                $_SESSION['user_id'] = $AccountID['AccountID'];
                 header("Location:" . BASE_URL);
                 exit();
             } else {
@@ -421,9 +426,18 @@ class HomeController
 
     public function listProducts()
     {
-        $listProducts = $this->modelProducts->getAllProducts();
+        if (isset($_GET['category'])) {
+            $categoryName = urldecode($_GET['category']); // Giải mã lại
+            $listProducts = $this->modelProducts->getProductsxCategories($categoryName);
+            // var_dump($_GET['category']); // Xem giá trị danh mục
+            // var_dump($products);         // Kiểm tra danh sách sản phẩm
+            // die();
+        } else {
+            $listProducts = $this->modelProducts->getAllProducts();
+        }
         require_once './views/listProducts.php';
     }
+
 
     public function listProductsxCategories($CategoryName)
     {
@@ -432,7 +446,47 @@ class HomeController
         return $listProductCate;
     }
 
-    // public function postCmt() {}
+    public function searchProducts()
+    {
+        $keyword = $_GET['search'] ?? '';
+        $products = $this->modelProducts->searchProductsByName($keyword);
+
+        require_once './views/searchResults.php'; // View hiển thị kết quả tìm kiếm
+    }
+
+
+    public function addComment()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // var_dump($_POST);
+            // die;
+            if (isset($_SESSION['user_client'])) {
+                $ProductID = $_POST['ProductID'];
+                $Content = $_POST['Content'];
+                $AccountID = $_SESSION['user_id'];  // Lấy từ session
+
+                var_dump($ProductID);
+                die;
+                $comment = [
+                    'ProductID' => intval($ProductID),
+                    'AccountID' => $AccountID,
+                    'Content' => $Content,
+                    'CommentDate' => date('Y-m-d H:i:s'),
+                    'Status' => 'approved'
+                ];
+                var_dump($comment);
+                die;
+                $this->modelComments->addComment($comment);
+
+                // Chuyển hướng lại trang chi tiết sản phẩm
+                header("Location: " . BASE_URL . "?act=detail-product&id=$ProductID");
+            } else {
+                // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+                header("Location: " . BASE_URL . "?act=login");
+            }
+        }
+    }
+
 
     public function contactUs()
     {

@@ -14,7 +14,7 @@ require_once 'layout/menu.php';
                 <div class="col-12">
                     <!-- section title start -->
                     <div class="section-title text-center">
-                        <h2 class="title">Tất cả sản phẩm</h2>
+                        <h2 class="title">Sản phẩm của chúng tôi</h2>
                         <p class="sub-title">Sản phẩm được cập nhật liên tục</p>
                     </div>
                     <!-- section title start -->

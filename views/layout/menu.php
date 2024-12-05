@@ -38,7 +38,7 @@
                                                 // die();
                                                 foreach ($listProductxCategory as $category):
                                                 ?>
-                                                    <li><a href="#"><?= $category['name'] ?></a></li>
+                                                    <li><a href="<?= BASE_URL . '?act=list-products&category=' . urlencode($category['name']) ?>"><?= $category['name'] ?></a></li>
                                                 <?php endforeach ?>
                                             </ul>
                                         </li>
@@ -59,11 +59,12 @@
                             <div class="header-search-container">
                                 <button class="search-trigger d-xl-none d-lg-block"><i
                                         class="pe-7s-search"></i></button>
-                                <form class="header-search-box d-lg-none d-xl-block">
-                                    <input type="text" placeholder="Nhập tên sản phẩm cần tìm..."
-                                        class="header-search-field input-grow">
-                                    <button class="header-search-btn"><i class="pe-7s-search"></i></button>
+                                <form action="<?= BASE_URL ?>" method="GET" class="header-search-box">
+                                    <input type="hidden" name="act" value="search-products">
+                                    <input type="text" name="search" placeholder="Nhập tên sản phẩm cần tìm..." class="header-search-field input-grow">
+                                    <button type="submit" class="header-search-btn"><i class="pe-7s-search"></i></button>
                                 </form>
+
                             </div>
                             <div class="header-configure-area">
                                 <ul class="nav justify-content-end">

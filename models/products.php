@@ -112,7 +112,21 @@ class Products
             INNER JOIN categories ON products.CategoryID = categories.id
             WHERE categories.name = :CategoryName';
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
+            $stmt->execute([':CategoryName' => $CategoryName]);
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function searchProductsByName($keyword)
+    {
+        try {
+            $sql = "SELECT * FROM products WHERE ProductName LIKE :keyword";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':keyword' => '%' . $keyword . '%'
+            ]);
             return $stmt->fetchAll();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();

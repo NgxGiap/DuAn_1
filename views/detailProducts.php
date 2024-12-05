@@ -66,7 +66,7 @@ require_once 'layout/menu.php';
                                 <div class="product-details-des">
                                     <div class="manufacturer-name">
                                         <a
-                                            href="#"><?= $product['name'] ?></a>
+                                            href="#"><?= $product['ProductName'] ?></a>
                                     </div>
                                     <h3 class="product-name"><?= $product['ProductName'] ?></h3>
                                     <div class="ratings d-flex">
@@ -164,9 +164,6 @@ require_once 'layout/menu.php';
                                         class="tab-content reviews-tab">
                                         <div class="tab-pane fade show active" id="tab_three">
                                             <?php foreach ($listComments as $comment): ?>
-                                                <h5><?= $countCmt ?> bình luận cho
-                                                    <span><?= $product['ProductName'] ?></span>
-                                                </h5>
                                                 <div
                                                     class="total-reviews mt-3">
                                                     <div
@@ -184,7 +181,8 @@ require_once 'layout/menu.php';
                                                     </div>
                                                 </div>
                                             <?php endforeach ?>
-                                            <form action="#" class="review-form">
+                                            <form action="<?= BASE_URL ?>?act=add-comment" method="POST" class="review-form">
+                                                <input type="hidden" name="ProductID" value="<?= $product['ProductID'] ?>">
                                                 <div
                                                     class="form-group row">
                                                     <div class="col">
@@ -192,7 +190,7 @@ require_once 'layout/menu.php';
                                                             class="col-form-label"><span
                                                                 class="text-danger">*</span>
                                                             Nội dung bình luận</label>
-                                                        <textarea
+                                                        <textarea name="Content"
                                                             class="form-control"
                                                             required></textarea>
                                                     </div>
@@ -234,7 +232,7 @@ require_once 'layout/menu.php';
                 <div class="col-12">
                     <div
                         class="product-carousel-4 slick-row-10 slick-arrow-style">
-                        <?php foreach ($listProductxCategory as $key => $product): ?>
+                        <?php foreach ($listProductsxCategory as $key => $product): ?>
                             <!-- product item start -->
                             <div class="product-item">
                                 <figure class="product-thumb">

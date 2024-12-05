@@ -2,7 +2,7 @@
     <div class="float-right d-none d-sm-block">
         By <b>Nguyễn Văn Giáp</b>
     </div>
-    <strong>Website MobileCity </strong>
+    <strong>Website High Tech</strong>
 </footer>
 
 <!-- Control Sidebar -->
