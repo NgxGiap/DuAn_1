@@ -47,10 +47,10 @@ class AdminOrders
     public function getDetailOrder($id)
     {
         try {
-            $sql = 'SELECT `orders`.*, order_statuses.StatusName, accounts.*, payments.PaymentMethod, orderdetails.* FROM `orders`
+            $sql = 'SELECT `orders`.*, order_statuses.StatusName, accounts.*, payment_methods.Name, orderdetails.* FROM `orders`
             INNER JOIN order_statuses ON orders.order_status_id = order_statuses.id 
             INNER JOIN accounts ON orders.AccountID = accounts.AccountID
-            INNER JOIN payments ON orders.OrderID = payments.OrderID
+            INNER JOIN payment_methods ON orders.OrderID = payment_methods.OrderID
             INNER JOIN orderdetails ON orders.OrderID = orderdetails.OrderID
             WHERE orders.OrderID = :id';
 
@@ -70,7 +70,7 @@ class AdminOrders
             $sql = 'SELECT `orderdetails`.*, products.*
             FROM orderdetails
             INNER JOIN products ON orderdetails.ProductID = products.ProductID
-            WHERE OrderDetailID = :id';
+            WHERE OrderID = :id';
             // var_dump('OK');
             // die();
             $stmt = $this->conn->prepare($sql);
@@ -99,21 +99,6 @@ class AdminOrders
         }
     }
 
-
-    // public function getListAlbum($id)
-    // {
-    //     try {
-    //         $sql = 'SELECT * FROM `album` WHERE ProductID = :id';
-
-    //         $stmt = $this->conn->prepare($sql);
-
-    //         $stmt->execute([':id' => $id]);
-
-    //         return $stmt->fetchAll();
-    //     } catch (Exception $e) {
-    //         echo "Error: " . $e->getMessage();
-    //     }
-    // }
 
     public function updateOrders(
         $id,
@@ -150,72 +135,4 @@ class AdminOrders
             echo "Error: " . $e->getMessage();
         }
     }
-
-    // public function getDetailAlbum($id)
-    // {
-    //     try {
-    //         $sql = 'SELECT * FROM `album` WHERE ID = :id';
-
-    //         $stmt = $this->conn->prepare($sql);
-
-    //         $stmt->execute([':id' => $id]);
-
-    //         return $stmt->fetch();
-    //     } catch (Exception $e) {
-    //         echo "Error: " . $e->getMessage();
-    //     }
-    // }
-
-    // public function updateAlbum($id, $new_file)
-    // {
-    //     try {
-    //         $sql = "UPDATE `album` SET `SRC`= :new_file
-    //         WHERE ID = :id";
-
-    //         $stmt = $this->conn->prepare($sql);
-
-    //         $stmt->execute([
-    //             ':new_file' => $new_file,
-    //             ':id' => $id
-    //         ]);
-
-    //         return true;
-    //     } catch (Exception $e) {
-    //         echo "Error: " . $e->getMessage();
-    //     }
-    // }
-
-    // public function destroyAlbum($albumID)
-    // {
-    //     try {
-    //         $sql = "DELETE FROM `album` WHERE `ID`= :id";
-
-    //         $stmt = $this->conn->prepare($sql);
-
-    //         $stmt->execute([
-    //             ':id' => $albumID
-    //         ]);
-
-    //         return true;
-    //     } catch (Exception $e) {
-    //         echo "Error: " . $e->getMessage();
-    //     }
-    // }
-
-    // public function destroyProducts($id)
-    // {
-    //     try {
-    //         $sql = "DELETE FROM `products` WHERE `ProductID`= :id";
-
-    //         $stmt = $this->conn->prepare($sql);
-
-    //         $stmt->execute([
-    //             ':id' => $id
-    //         ]);
-
-    //         return true;
-    //     } catch (Exception $e) {
-    //         echo "Error: " . $e->getMessage();
-    //     }
-    // }
 }

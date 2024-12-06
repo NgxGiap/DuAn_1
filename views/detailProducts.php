@@ -66,9 +66,9 @@ require_once 'layout/menu.php';
                                 <div class="product-details-des">
                                     <div class="manufacturer-name">
                                         <a
-                                            href="#"><?= $product['ProductName'] ?></a>
+                                            href="#"><?= $abc['ProductName'] ?></a>
                                     </div>
-                                    <h3 class="product-name"><?= $product['ProductName'] ?></h3>
+                                    <h3 class="product-name"><?= $abc['ProductName'] ?></h3>
                                     <div class="ratings d-flex">
                                         <div class="pro-review">
                                             <?php $countCmt = count($listComments) ?>
@@ -77,21 +77,21 @@ require_once 'layout/menu.php';
                                     </div>
                                     <div class="price-box">
                                         <span
-                                            class="price-regular"><?= formatPrice($product['Price']) . 'đ' ?></span>
+                                            class="price-regular"><?= formatPrice($abc['Price']) . 'đ' ?></span>
                                         <!-- <span
                                             class="price-old"><del>$90.00</del></span> -->
                                     </div>
                                     <div class="availability">
                                         <i
                                             class="fa fa-check-circle"></i>
-                                        <span><?= $product['StockQuantity'] . ' trong kho' ?></span>
+                                        <span><?= $abc['StockQuantity'] . ' trong kho' ?></span>
                                     </div>
-                                    <p class="pro-desc"><?= $product['Description'] ?></p>
+                                    <p class="pro-desc"><?= $abc['Description'] ?></p>
                                     <form action="<?= BASE_URL . '?act=add-to-cart' ?>" method="POST">
                                         <div class="quantity-cart-box d-flex align-items-center">
                                             <h6 class="option-title">Số lượng:</h6>
                                             <div class="quantity">
-                                                <input type="hidden" name="ProductID" value="<?= $product['ProductID'] ?>">
+                                                <input type="hidden" name="ProductID" value="<?= $abc['ProductID'] ?>">
 
                                                 <div class="pro-qty"><input type="text" value="1" name="Quantity"></div>
                                             </div>
@@ -104,7 +104,7 @@ require_once 'layout/menu.php';
                                         <h6 class="option-title">size
                                             :</h6>
                                         <select class="nice-select">
-                                            <option><?= $product['Size'] ?></option>
+                                            <option><?= $abc['Size'] ?></option>
                                         </select>
                                     </div>
                                     <div class="color-option">
@@ -183,7 +183,7 @@ require_once 'layout/menu.php';
                                                 </div>
                                             <?php endforeach ?>
                                             <form action="<?= BASE_URL ?>?act=add-comment" method="POST" class="review-form">
-                                                <input type="hidden" name="ProductID" value="<?= $product['ProductID'] ?>">
+                                                <input type="hidden" name="ProductID" value="<?= $abc['ProductID'] ?>">
 
                                                 <div
                                                     class="form-group row">
@@ -234,19 +234,19 @@ require_once 'layout/menu.php';
                 <div class="col-12">
                     <div
                         class="product-carousel-4 slick-row-10 slick-arrow-style">
-                        <?php foreach ($listProductsxCategory as $key => $product): ?>
+                        <?php foreach ($listProductsxCategory as $key => $product01): ?>
                             <!-- product item start -->
                             <div class="product-item">
                                 <figure class="product-thumb">
-                                    <a href="<?= BASE_URL . '?act=detail-product&id=' . $product['ProductID'] ?>">
-                                        <img class="pri-img" src="<?= BASE_URL . $product['Image'] ?>"
+                                    <a href="<?= BASE_URL . '?act=detail-product&id=' . $product01['ProductID'] ?>">
+                                        <img class="pri-img" src="<?= BASE_URL . $product01['Image'] ?>"
                                             alt="product">
-                                        <img class="sec-img" src="<?= BASE_URL . $product['Image'] ?>"
+                                        <img class="sec-img" src="<?= BASE_URL . $product01['Image'] ?>"
                                             alt="product">
                                     </a>
                                     <div class="product-badge">
                                         <?php
-                                        $CreateAt = new DateTime($product['CreateAt']);
+                                        $CreateAt = new DateTime($product01['CreateAt']);
                                         $Now = new DateTime();
                                         $Days = $Now->diff($CreateAt);
                                         if ($Days->days <= 7) { ?>
@@ -256,16 +256,16 @@ require_once 'layout/menu.php';
                                         <?php }; ?>
                                     </div>
                                     <div class="cart-hover">
-                                        <a href="<?= BASE_URL . '?act=detail-product&id=' . $product['ProductID'] ?>">
+                                        <a href="<?= BASE_URL . '?act=detail-product&id=' . $product01['ProductID'] ?>">
                                             <button class="btn btn-cart">Xem chi tiết</button></a>
                                     </div>
                                 </figure>
                                 <div class="product-caption text-center">
                                     <h6 class="product-name">
-                                        <a href="<?= BASE_URL . '?act=detail-product&id=' . $product['ProductID'] ?>"><?= $product['ProductName'] ?></a>
+                                        <a href="<?= BASE_URL . '?act=detail-product&id=' . $product01['ProductID'] ?>"><?= $product01['ProductName'] ?></a>
                                     </h6>
                                     <div class="price-box">
-                                        <span class="price-regular"><?= formatPrice($product['Price']) . 'đ' ?></span>
+                                        <span class="price-regular"><?= formatPrice($product01['Price']) . 'đ' ?></span>
                                         <!-- <span class="price-old"><del>$70.00</del></span> -->
                                     </div>
                                 </div>

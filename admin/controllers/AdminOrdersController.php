@@ -20,6 +20,7 @@ class AdminOrdersController
         $orders = $this->modelOrders->getDetailOrder($id_order);
         $productOrder = $this->modelOrders->getListProductOrder($id_order);
         // var_dump($productOrder);
+        // var_dump($orders);
         // die();
         $listStatusOrder = $this->modelOrders->getAllStatusOrder();
         require_once './views/orders/detailOrder.php';

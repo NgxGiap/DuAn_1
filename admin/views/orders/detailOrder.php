@@ -64,7 +64,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <h4>
-                                    <i class="nav-icon fab fa-product-hunt"></i> MobileCity - NVG0201.
+                                    <i class="nav-icon fab fa-product-hunt"></i> High Tech - NVG.
                                     <small class="float-right">Date: <?= $orders['OrderDate'] ?></small>
                                 </h4>
                             </div>
@@ -97,7 +97,7 @@
                                     <strong>Mã đơn hàng: <?= $orders['OrderCode'] ?></strong><br>
                                     Tổng tiền: <?= $orders['TotalPrice'] ?><br>
                                     Note: <?= $orders['Note'] ?><br>
-                                    Phương thức thanh toán: <?= $orders['PaymentMethod'] ?><br>
+                                    Phương thức thanh toán: <?= $orders['Name'] ?><br>
                                 </address>
                             </div>
                             <!-- /.col -->

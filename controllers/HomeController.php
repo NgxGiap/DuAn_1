@@ -30,14 +30,16 @@ class HomeController
     public function detailProduct()
     {
         $id = $_GET['id'];
-        $product = $this->modelProducts->getDetailProduct($id);
+        $abc = $this->modelProducts->getDetailProduct($id);
+        // var_dump($abc);
+
         $listAlbum = $this->modelProducts->getListAlbum($id);
         $listComments = $this->modelProducts->getCommentFromProduct($id);
 
-        $listProductsxCategory = $this->modelProducts->getListProductCategory($product['CategoryID']);
-        // var_dump($listProductxCategory);
+        $listProductsxCategory = $this->modelProducts->getListProductCategory($abc['CategoryID']);
+        // var_dump($listProductsxCategory);
         // die();
-        if ($product) {
+        if ($abc) {
             require_once './views/detailProducts.php';
         } else {
             header("Location: " . BASE_URL);
@@ -133,7 +135,7 @@ class HomeController
 
                 $cart = $this->modelCart->getCartFromID($mail['AccountID']);
 
-                // var_dump($cart);
+                // var_dump($_POST);
                 // die;
                 if (!$cart) {
                     $cartID = $this->modelCart->addCart($mail['AccountID']);
@@ -480,8 +482,8 @@ class HomeController
                 $Content = $_POST['Content'];
                 $AccountID = $_SESSION['user_id'];  // Lấy từ session
 
-                var_dump($ProductID);
-                die;
+                // var_dump($ProductID);
+                // die;
                 $comment = [
                     'ProductID' => intval($ProductID),
                     'AccountID' => $AccountID,
@@ -489,8 +491,8 @@ class HomeController
                     'CommentDate' => date('Y-m-d H:i:s'),
                     'Status' => 'approved'
                 ];
-                var_dump($comment);
-                die;
+                // var_dump($comment);
+                // die;
                 $this->modelComments->addComment($comment);
 
                 // Chuyển hướng lại trang chi tiết sản phẩm

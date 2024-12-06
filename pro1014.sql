@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 29, 2024 at 05:44 PM
+-- Generation Time: Dec 06, 2024 at 03:28 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -47,7 +47,9 @@ CREATE TABLE `accounts` (
 INSERT INTO `accounts` (`AccountID`, `Username`, `PasswordHash`, `Avatar`, `Email`, `Phone`, `FullName`, `Address`, `RoleID`, `CreatedAt`) VALUES
 (1, 'nvg0215', '$2y$10$7Qdk1f.nbz4ILoBFpSOEvOsD/I3OlDiuu/FFEc7pFZFcY2WBQDnjO', 'https://icon-library.com/images/personal-icon/personal-icon-1.jpg', 'vangiap021@gmail.com', '0867963647', 'Giáp Nguyễn Văn Hi', '123 Đường ABC, Hà Nội', 2, '2024-11-23 23:11:59'),
 (2, 'NVG', '$2y$10$JU5COCjXbJ/zKPb0xhx7d.D5j9LgJw/tSFH/G6obP2bNPy.CBy0hS', 'https://icon-library.com/images/personal-icon/personal-icon-1.jpg', 'nguyenvangiap215@gmail.com', '113', 'Nguyễn Văn Giáp', NULL, 1, '2024-11-23 23:11:59'),
-(3, 'nvghelo1', '$2y$10$FoBVV9kXBvBdNfH1v7zTz.Z.4WMGDkPZ9Olom5wDfkJ8wmygXqID.', 'https://icon-library.com/images/personal-icon/personal-icon-1.jpg', 'nguyenvangiap2005.giaothuy@gmail.com', '0901234567', 'Nguyễn Văn Giáp1222222', NULL, 1, '2024-11-24 18:29:01');
+(3, 'nvghelo1', '$2y$10$FoBVV9kXBvBdNfH1v7zTz.Z.4WMGDkPZ9Olom5wDfkJ8wmygXqID.', 'https://icon-library.com/images/personal-icon/personal-icon-1.jpg', 'nguyenvangiap2005.giaothuy@gmail.com', '0901234567', 'Nguyễn Văn Giáp1222222', NULL, 1, '2024-11-24 18:29:01'),
+(4, 'hello123', '$2y$10$QEVfxdOmXmepRJuaGx4Kde2erk9s/hi.NLe1UZNyecGLxh0Sd.5K.', './uploads/personal-icon-1.jpg', 'khatot0201@gmail.com', '0901234567', 'KBT', NULL, 2, '2024-11-30 22:55:34'),
+(5, 'tester', '$2y$10$G9vNi5XXrp0m3bBW0SXvB.FJ86d9Zrql6fyiOs07rF20oczHp7C0O', './uploads/personal-icon-1.jpg', 'khatot00201@gmail.com', NULL, NULL, NULL, 2, '2024-12-03 10:11:15');
 
 -- --------------------------------------------------------
 
@@ -124,8 +126,10 @@ CREATE TABLE `cartdetails` (
 --
 
 INSERT INTO `cartdetails` (`CartDetailID`, `CartID`, `ProductID`, `Quantity`) VALUES
-(4, 1, 19, 8),
-(5, 1, 20, 2);
+(18, 4, 22, 3),
+(19, 4, 21, 1),
+(20, 109, 21, 1),
+(22, 111, 26, 1);
 
 -- --------------------------------------------------------
 
@@ -143,14 +147,20 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`CartID`, `AccountID`) VALUES
-(4, NULL),
-(5, NULL),
-(6, NULL),
-(7, NULL),
-(8, NULL),
+(105, NULL),
+(106, NULL),
+(107, NULL),
+(108, NULL),
+(109, NULL),
+(110, NULL),
+(111, NULL),
+(112, NULL),
 (1, 1),
 (2, 1),
-(3, 1);
+(3, 1),
+(4, 4),
+(5, 4),
+(6, 4);
 
 -- --------------------------------------------------------
 
@@ -196,7 +206,10 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`CommentID`, `ProductID`, `AccountID`, `Content`, `CommentDate`, `Status`) VALUES
-(2, 20, 1, 'Aliquam fringilla euismod risus ac bibendum. Sed sit amet sem varius ante feugiat lacinia. Nunc ipsum nulla, vulputate ut venenatis vitae, malesuada ut mi. Quisque iaculis, dui congue placerat pretium, augue erat accumsan lacus', '2024-11-27 17:18:51', 'approved');
+(2, 20, 1, 'Aliquam fringilla euismod risus ac bibendum. Sed sit amet sem varius ante feugiat lacinia. Nunc ipsum nulla, vulputate ut venenatis vitae, malesuada ut mi. Quisque iaculis, dui congue placerat pretium, augue erat accumsan lacus', '2024-11-27 17:18:51', 'approved'),
+(3, 28, 1, '123', '2024-12-04 10:46:51', 'approved'),
+(4, 28, 1, 'Sản phẩm ok\r\n', '2024-12-04 10:47:22', 'approved'),
+(5, 29, 1, 'abc', '2024-12-05 16:17:17', 'approved');
 
 -- --------------------------------------------------------
 
@@ -242,7 +255,12 @@ CREATE TABLE `orderdetails` (
 --
 
 INSERT INTO `orderdetails` (`OrderDetailID`, `OrderID`, `ProductID`, `Quantity`, `PriceAtOrder`, `TotalPrice`) VALUES
-(3, 3, 19, 3, '30.00', '90.00');
+(3, 3, 19, 3, '30.00', '90.00'),
+(11, 13, 30, 1, '29950000.00', '29950000.00'),
+(12, 14, 25, 3, '7950000.00', '23850000.00'),
+(13, 15, 30, 2, '29950000.00', '59900000.00'),
+(14, 15, 26, 1, '33650000.00', '33650000.00'),
+(15, 15, 20, 1, '22999000.00', '22999000.00');
 
 -- --------------------------------------------------------
 
@@ -255,7 +273,7 @@ CREATE TABLE `orders` (
   `OrderCode` varchar(255) DEFAULT NULL,
   `AccountID` int DEFAULT NULL,
   `payment_method_id` int DEFAULT NULL,
-  `order_status_id` int DEFAULT NULL,
+  `order_status_id` int DEFAULT '1',
   `RecipientName` varchar(100) DEFAULT NULL,
   `RecipientEmail` varchar(100) DEFAULT NULL,
   `RecipientPhone` varchar(15) DEFAULT NULL,
@@ -272,9 +290,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`OrderID`, `OrderCode`, `AccountID`, `payment_method_id`, `order_status_id`, `RecipientName`, `RecipientEmail`, `RecipientPhone`, `RecipientAddress`, `Note`, `CustomerID`, `OrderDate`, `TotalAmount`, `Status`) VALUES
-(1, 'DH-GNV', 1, 1, 2, 'Giáp Nguyễn Văn Edit 2', 'vangiap021@gmail.com', '113', '13 Trịnh Văn Bô - Hà Nội', '2 cái Iphone15 ném chó', 1, '2023-10-01 00:00:00', '20000000.00', NULL),
-(2, 'DH-NVG', 2, 2, 8, 'Nguyễn Văn Giáp', NULL, '0867963647', 'Đâu cũng được', 'Không có gì', 2, '2023-10-05 00:00:00', '22000000.00', NULL),
-(3, 'DH-003', 1, 2, 4, 'NVG', NULL, '113', NULL, 'Không', 3, '2023-10-07 00:00:00', '15000000.00', 'Shipped');
+(3, 'DH-003', 1, 2, 4, 'abc', NULL, '113', NULL, 'Không', 3, '2023-10-07 00:00:00', '15000000.00', 'Shipped'),
+(13, 'DH-5373', 1, 1, 4, 'Giáp Nguyễn Văn Hi', 'vangiap021@gmail.com', '0867963647', '123 Đường ABC, Hà Nội', '2 cái Iphone15 ném chó', 3, '2024-12-05 05:36:11', '29.980.000 đ', 'Shipped'),
+(14, 'DH-3515', 1, 1, 1, 'Giáp Nguyễn Văn Hi', 'vangiap021@gmail.com', '0867963647', '123 Đường ABC, Hà Nội', '2 cái Iphone15 ném chó 123', 3, '2024-12-05 05:37:27', '23.880.000 đ', '1'),
+(15, 'DH-5125', 1, 2, 1, 'Giáp Nguyễn Văn Hi', 'vangiap021@gmail.com', '0867963647', '123 Đường ABC, Hà Nội', 'Không OK', NULL, '2024-12-05 17:31:19', '116.579.000 đ', '1');
 
 -- --------------------------------------------------------
 
@@ -309,11 +328,33 @@ INSERT INTO `order_statuses` (`ID`, `StatusName`, `Description`, `CreatedAt`, `U
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `PaymentID` int NOT NULL,
+  `OrderID` int DEFAULT NULL,
+  `PaymentMethod` varchar(50) DEFAULT NULL,
+  `PaymentStatus` varchar(20) DEFAULT NULL,
+  `PaymentDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`PaymentID`, `OrderID`, `PaymentMethod`, `PaymentStatus`, `PaymentDate`) VALUES
+(1, 3, 'COD', 'Tiền mặt', '2024-12-03');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `payment_methods`
 --
 
 CREATE TABLE `payment_methods` (
   `ID` int NOT NULL,
+  `OrderID` int NOT NULL,
   `Name` varchar(100) NOT NULL,
   `Description` text,
   `CreatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -324,9 +365,9 @@ CREATE TABLE `payment_methods` (
 -- Dumping data for table `payment_methods`
 --
 
-INSERT INTO `payment_methods` (`ID`, `Name`, `Description`, `CreatedAt`, `UpdatedAt`) VALUES
-(1, 'COD', 'Thanh toán khi nhận hàng', '2024-11-23 22:54:00', '2024-11-23 23:03:58'),
-(2, 'Chuyển khoản ngân hàng', 'QR Code', '2024-11-23 22:54:00', '2024-11-23 23:04:17');
+INSERT INTO `payment_methods` (`ID`, `OrderID`, `Name`, `Description`, `CreatedAt`, `UpdatedAt`) VALUES
+(1, 3, 'COD', 'Thanh toán khi nhận hàng', '2024-11-23 22:54:00', '2024-12-06 00:05:42'),
+(2, 13, 'Chuyển khoản ngân hàng', 'QR Code', '2024-11-23 22:54:00', '2024-12-06 00:05:44');
 
 -- --------------------------------------------------------
 
@@ -356,16 +397,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`ProductID`, `ProductName`, `Image`, `Description`, `Price`, `StockQuantity`, `BrandID`, `Color`, `Storage`, `Size`, `CategoryID`, `SKU`, `CommentID`, `CreateAt`) VALUES
-(19, 'Điện thoại iPhone 13 Pro Chính hãng VN/A', './uploads/1732870280iphone-13-pro-xanh.jpg.webp', 'Điện thoại iPhone 13 Pro Chính hãng VN/A (128GB, 256GB, 512GB)', '26950000.00', 30, NULL, 'Xanh', '128GB', '6.1 inches', 1, 'Xanh-128-6.1', NULL, '2024-11-11 15:47:00'),
-(20, 'Điện thoại iPhone 16 Chính hãng', './uploads/1732870404iphone-16-xanh-mong-ket.jpg.webp', 'Điện thoại iPhone 16 Chính hãng VN/A', '22999000.00', 2, 2, 'Xanh', '256GB', '6.1 inches', 1, 'Xanh-256-6.1', NULL, '2024-11-27 15:47:00'),
-(21, 'Điện thoại Samsung Galaxy S24 Ultra Chính hãng AI', './uploads/1732869546samsung-galaxy-s24-ultra-xam-titan.jpg.webp', 'Điện thoại Samsung Galaxy S24 Ultra Chính hãng AI (Snapdragon 8 Gen 3)', '23450000.00', 50, NULL, 'Gray', '256GB', '6.8 inches', 1, 'Gray-256-6.8', NULL, '2024-11-29 15:39:06'),
-(22, 'Điện thoại Xiaomi 13 Pro', './uploads/1732869680xiaomi-13-pro-sac-120w-trang.png.webp', 'Điện thoại Xiaomi 13 Pro', '12950000.00', 30, NULL, 'White', '128GB', '6.73 inches', 1, 'White-128-6.73', NULL, '2024-11-29 15:41:20'),
-(23, 'Điện thoại Xiaomi 14 Ultra 5G (Camera khủng)', './uploads/1732869794xiaomi-14-ultra-den.jpg.webp', 'Điện thoại Xiaomi 14 Ultra 5G (Snapdragon 8 Gen 3 - Camera khủng)', '23950000.00', 20, NULL, 'Black', '256GB', '6.73 inches', 1, 'Black-256-6.73', NULL, '2024-11-29 15:43:14'),
-(24, 'Điện thoại Vivo X200 Pro Mini', './uploads/1732870675vivo-x200-pro-mini-xanh-la.jpg.webp', 'Điện thoại Vivo X200 Pro Mini', '16450000.00', 10, NULL, 'Green', '256GB', '6.31 inches', 1, 'Green-256-6.31', NULL, '2024-11-29 15:57:55'),
+(19, 'Điện thoại iPhone 13 Pro Chính hãng VN/A', './uploads/1732870280iphone-13-pro-xanh.jpg.webp', 'Điện thoại iPhone 13 Pro Chính hãng VN/A (128GB, 256GB, 512GB)', '26950000.00', 30, NULL, 'Xanh', '128GB', '6.1 inches', 2, 'Xanh-128-6.1', NULL, '2024-11-11 15:47:00'),
+(20, 'Điện thoại iPhone 16 Chính hãng', './uploads/1732870404iphone-16-xanh-mong-ket.jpg.webp', 'Điện thoại iPhone 16 Chính hãng VN/A', '22999000.00', 2, 2, 'Xanh', '256GB', '6.1 inches', 2, 'Xanh-256-6.1', NULL, '2024-11-27 15:47:00'),
+(21, 'Điện thoại Samsung Galaxy S24 Ultra Chính hãng AI', './uploads/1732869546samsung-galaxy-s24-ultra-xam-titan.jpg.webp', 'Điện thoại Samsung Galaxy S24 Ultra Chính hãng AI (Snapdragon 8 Gen 3)', '23450000.00', 50, NULL, 'Gray', '256GB', '6.8 inches', 3, 'Gray-256-6.8', NULL, '2024-11-29 15:39:06'),
+(22, 'Điện thoại Xiaomi 13 Pro', './uploads/1732869680xiaomi-13-pro-sac-120w-trang.png.webp', 'Điện thoại Xiaomi 13 Pro', '12950000.00', 30, NULL, 'White', '128GB', '6.73 inches', 3, 'White-128-6.73', NULL, '2024-11-29 15:41:20'),
+(23, 'Điện thoại Xiaomi 14 Ultra 5G (Camera khủng)', './uploads/1732869794xiaomi-14-ultra-den.jpg.webp', 'Điện thoại Xiaomi 14 Ultra 5G (Snapdragon 8 Gen 3 - Camera khủng)', '23950000.00', 20, NULL, 'Black', '256GB', '6.73 inches', 4, 'Black-256-6.73', NULL, '2024-11-29 15:43:14'),
+(24, 'Điện thoại Vivo X200 Pro Mini', './uploads/1732870675vivo-x200-pro-mini-xanh-la.jpg.webp', 'Điện thoại Vivo X200 Pro Mini', '16450000.00', 10, NULL, 'Green', '256GB', '6.31 inches', 4, 'Green-256-6.31', NULL, '2024-11-29 15:57:55'),
 (25, 'Điện thoại Sony Xperia 5 III (5 Mark 3) 5G', './uploads/1732872072sony-xperia-5-iii-5-mark-3-5g-pin-4500-mah-green.jpg.webp', 'Điện thoại Sony Xperia 5 III (5 Mark 3) 5G (Snapdragon 888, 99.9%)', '7950000.00', 79, NULL, 'Green', '128GB', '6.1 inches', 1, 'Green-128-6.1', NULL, '2024-11-29 16:21:12'),
 (26, 'Điện thoại Oppo Find N3 5G', './uploads/1732872174oppo-find-n3-vang.jpg.webp', 'Điện thoại Oppo Find N3 5G (Snapdragon 8 Gen 2)', '33650000.00', 5, NULL, 'Yellow', '512GB', '7.82 inches', 1, 'Yellow-512-7.82', NULL, '2024-11-29 16:22:54'),
-(27, 'Điện thoại Asus ROG Phone 9 Pro (Snapdragon 8 Elite)', './uploads/1732872391rog-phone-9-pro-dai-dien.jpg.webp', 'Điện thoại Asus ROG Phone 9 Pro (Snapdragon 8 Elite)', '27950000.00', 15, NULL, 'Black', '512GB', '6.78 inches', 1, 'Black-512-6.78', NULL, '2024-11-29 16:26:31'),
-(28, 'Điện thoại Asus ROG Phone 7 Ultimate', './uploads/1732872447asus-rog-phone-7-ultimate-trang.jpg.webp', 'Điện thoại Asus ROG Phone 7 Ultimate', '31550000.00', 31, NULL, 'White', '512GB', '6.78 inches', 1, 'White-512-6.78', NULL, '2024-11-29 16:27:27'),
+(27, 'Điện thoại Asus ROG Phone 9 Pro (Snapdragon 8 Elite)', './uploads/1732872391rog-phone-9-pro-dai-dien.jpg.webp', 'Điện thoại Asus ROG Phone 9 Pro (Snapdragon 8 Elite)', '27950000.00', 15, NULL, 'Black', '512GB', '6.78 inches', 5, 'Black-512-6.78', NULL, '2024-11-29 16:26:31'),
+(28, 'Điện thoại Asus ROG Phone 7 Ultimate', './uploads/1732872447asus-rog-phone-7-ultimate-trang.jpg.webp', 'Điện thoại Asus ROG Phone 7 Ultimate', '31550000.00', 31, NULL, 'White', '512GB', '6.78 inches', 5, 'White-512-6.78', NULL, '2024-11-29 16:27:27'),
 (29, 'Điện thoại Nubia Red Magic 9 Pro Plus Bumblebee Transformers Edition', './uploads/1732872550nubia-red-magic-9-pro-bumblebee-transformers-edition.jpg.webp', 'Điện thoại Nubia Red Magic 9 Pro Plus Bumblebee Transformers Edition', '22790000.00', 22, NULL, 'Yellow', '512GB', '6.8 inches', 1, 'Yellow-512-6.8', NULL, '2024-11-29 16:29:10'),
 (30, 'Điện thoại Tesla Pi Phone', './uploads/1732872622tesla-pi-phone-ro-ri-02.jpg.webp', 'Điện thoại Tesla Pi Phone', '29950000.00', 30, NULL, 'Gray', '128GB', '6.7 inches', 1, 'Gray-128-6.7', NULL, '2024-11-29 16:30:22');
 
@@ -465,14 +506,21 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`OrderID`),
   ADD KEY `CustomerID` (`CustomerID`),
   ADD KEY `order_account_fk` (`AccountID`),
-  ADD KEY `fk_orders_payment_methods` (`payment_method_id`),
-  ADD KEY `fk_orders_order_statuses` (`order_status_id`);
+  ADD KEY `fk_orders_order_statuses` (`order_status_id`),
+  ADD KEY `order_pmmt` (`payment_method_id`);
 
 --
 -- Indexes for table `order_statuses`
 --
 ALTER TABLE `order_statuses`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`PaymentID`),
+  ADD UNIQUE KEY `OrderID` (`OrderID`);
 
 --
 -- Indexes for table `payment_methods`
@@ -504,7 +552,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `AccountID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `AccountID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `album`
@@ -522,13 +570,13 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `cartdetails`
 --
 ALTER TABLE `cartdetails`
-  MODIFY `CartDetailID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `CartDetailID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `CartID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `CartID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -540,7 +588,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `CommentID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `CommentID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -552,13 +600,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `OrderDetailID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `OrderDetailID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `OrderID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `OrderID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `order_statuses`
@@ -567,10 +615,10 @@ ALTER TABLE `order_statuses`
   MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `payment_methods`
+-- AUTO_INCREMENT for table `payments`
 --
-ALTER TABLE `payment_methods`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `payments`
+  MODIFY `PaymentID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -632,9 +680,15 @@ ALTER TABLE `orderdetails`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `fk_orders_order_statuses` FOREIGN KEY (`order_status_id`) REFERENCES `order_statuses` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_orders_payment_methods` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `order_account_fk` FOREIGN KEY (`AccountID`) REFERENCES `accounts` (`AccountID`) ON DELETE SET NULL,
+  ADD CONSTRAINT `order_pmmt` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_methods` (`ID`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `products`
