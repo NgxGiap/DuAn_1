@@ -27,7 +27,7 @@ require_once 'views/layout/menu.php';
                 <div class="col-md-3">
                     <div class="text-center">
                         <img src="https://th.bing.com/th/id/OIP.9IwgOXmpwMDGFmzb6LpUoQHaHa?rs=1&pid=ImgDetMain" width="200px" class="avatar img-circle" alt="avatar">
-                        <h6 class="mt-2">User name: <?= $info['Username'] ?></h6>
+                        <h6 class="mt-2">Tên người dùng: <?= $info['Username'] ?></h6>
                         <h6 class="mt-2">Chức vụ: <?= $info['RoleID'] ?></h6>
                     </div>
                 </div>
@@ -46,9 +46,9 @@ require_once 'views/layout/menu.php';
                         <h3>Thông tin cá nhân</h3>
                         <input type="hidden" name="AccountID" value="<?= $info['AccountID'] ?>">
                         <div class="form-group single-input-item">
-                            <label class="col-lg-3 control-label">User name:</label>
+                            <label class="col-lg-3 control-label">Tên người dùng:</label>
                             <div class="col-lg-12">
-                                <input class="form-control" name="Username" type="text" value="<?= $info['Username'] ?>" placeholder="Sửa user name">
+                                <input class="form-control" name="Username" type="text" value="<?= $info['Username'] ?>" placeholder="Sửa tên người dùng">
                             </div>
                         </div>
                         <div class="form-group single-input-item">
@@ -74,7 +74,7 @@ require_once 'views/layout/menu.php';
                         </div>
                         <div class="form-group single-input-item col-2">
                             <div>
-                                <button type="submit" class="btn btn-sqr">Submit</button>
+                                <button type="submit" class="btn btn-sqr">Xác nhận</button>
                             </div>
                         </div>
                     </form>
@@ -117,7 +117,7 @@ require_once 'views/layout/menu.php';
                         </div>
                         <div class="form-group single-input-item col-2">
                             <div>
-                                <button type="submit" class="btn btn-sqr">Submit</button>
+                                <button type="submit" class="btn btn-sqr">Xác nhận</button>
                             </div>
                         </div>
                     </form>

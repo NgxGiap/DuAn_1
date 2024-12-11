@@ -21,7 +21,7 @@ require_once 'layout/menu.php';
                                         href="<?= BASE_URL ?>"><i
                                             class="fa fa-home"></i></a></li>
                                 <li class="breadcrumb-item active"
-                                    aria-current="page">cart</li>
+                                    aria-current="page">Giỏ hàng</li>
                             </ul>
                         </nav>
                     </div>

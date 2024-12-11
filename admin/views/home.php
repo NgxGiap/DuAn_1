@@ -18,13 +18,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h2>Admin Reports</h2>
+                    <h2>Báo cáo thống kê</h2>
                     <div class="row">
                         <!-- Doanh thu -->
                         <div class="card-single col d-flex justify-content-around bg-primary text-white py-5 ml-3">
                             <div>
                                 <h1 class="font-weight-bold"><?php echo formatPrice($totalRevenue) . ' đ'; ?></h1>
-                                <span>Total Revenue</span>
+                                <span>Tổng doanh thu</span>
                             </div>
                             <div>
                                 <i class="fas fa-wallet" style="font-size: 80px;"></i>
@@ -34,7 +34,7 @@
                         <div class="card-single col d-flex justify-content-around bg-warning text-white py-5 ml-3">
                             <div>
                                 <h1 class="font-weight-bold"><?php echo $totalProducts; ?></h1>
-                                <span>Total Products</span>
+                                <span>Số lượng sản phẩm</span>
                             </div>
                             <div>
                                 <i class="fab fa-product-hunt" style="font-size: 80px;"></i>
@@ -45,7 +45,7 @@
                         <div class="card-single col d-flex justify-content-around bg-success text-white py-5 ml-3">
                             <div>
                                 <h1 class="font-weight-bold"><?php echo $totalCategories; ?></h1>
-                                <span>Total Categories</span>
+                                <span>Số lượng danh mục</span>
                             </div>
                             <div>
                                 <i class="fas fa-th-list" style="font-size: 80px;"></i>
@@ -55,7 +55,7 @@
                         <div class="card-single col d-flex justify-content-around bg-danger text-white py-5 ml-3">
                             <div>
                                 <h1 class="font-weight-bold"><?php echo $totalCustomers; ?></h1>
-                                <span>Total Customers</span>
+                                <span>Số lượng khách hàng</span>
                             </div>
                             <div>
                                 <i class="fas fa-users" style="font-size: 80px;"></i>

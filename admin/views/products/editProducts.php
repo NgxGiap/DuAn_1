@@ -18,10 +18,10 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-11">
-                    <h1>Edit sản phẩm <?= $product['ProductName'] ?></h1>
+                    <h1>Chỉnh sửa sản phẩm <?= $product['ProductName'] ?></h1>
                 </div>
                 <div class="col-sm-1">
-                    <a href="<?= BASE_URL_ADMIN . '?act=list-products' ?>" class="btn btn-secondary">Cancel</a>
+                    <a href="<?= BASE_URL_ADMIN . '?act=list-products' ?>" class="btn btn-secondary">Hủy</a>
 
                 </div>
             </div>
@@ -89,7 +89,7 @@
                                 <?php } ?>
                             </div>
                             <div class="form-group col-3">
-                                <label for="Size">Size</label>
+                                <label for="Size">Kích thước</label>
                                 <input type="text" name="Size" id="Size" class="form-control" value="<?= $product['Size'] ?>">
                                 <?php if (isset($_SESSION['error']['Size'])) { ?>
                                     <p class="text-danger"> <?= $_SESSION['error']['Size'] ?></p>

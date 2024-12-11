@@ -33,7 +33,7 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="<?= BASE_URL_ADMIN . '?act=form-add-products' ?>">
-                                <button class="btn btn-success">Add Product</button>
+                                <button class="btn btn-success">Thêm sản phẩm</button>
                             </a>
                         </div>
                         <!-- /.card-header -->
@@ -42,15 +42,14 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Product Name</th>
-                                        <th>Image</th>
-                                        <th>Price</th>
-                                        <th>Stock Quantity</th>
-                                        <th>Color</th>
-                                        <th>Storage</th>
-                                        <th>SKU</th>
-                                        <th>Category</th>
-                                        <th>Action</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Ảnh</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Màu</th>
+                                        <th>Dung lượng</th>
+                                        <th>Danh mục</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,7 +64,6 @@
                                             <td><?= $product['StockQuantity'] ?></td>
                                             <td><?= $product['Color'] ?></td>
                                             <td><?= $product['Storage'] ?></td>
-                                            <td><?= $product['SKU'] ?></td>
                                             <td><?= $product['name'] ?></td>
                                             <td>
                                                 <div class="btn-group">
@@ -87,15 +85,14 @@
                                 <tfoot>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Product Name</th>
-                                        <th>Image</th>
-                                        <th>Price</th>
-                                        <th>Stock Quantity</th>
-                                        <th>Color</th>
-                                        <th>Storage</th>
-                                        <th>SKU</th>
-                                        <th>Category</th>
-                                        <th>Action</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Ảnh</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Màu</th>
+                                        <th>Dung lượng</th>
+                                        <th>Danh mục</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </tfoot>
                             </table>

@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý tài khoản Customer</h1>
+                    <h1>Quản lý tài khoản Khách hàng</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -31,7 +31,7 @@
                 <div class="col-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Sửa tài khoản Customer: <?= $Customer['Username'] ?> </h3>
+                            <h3 class="card-title">Sửa tài khoản Khách hàng: <?= $Customer['Username'] ?> </h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
@@ -39,7 +39,7 @@
                             <input type="hidden" name="id_customer" value="<?= $Customer['AccountID'] ?>">
                             <div class="card-body">
                                 <div class="form-group col-12">
-                                    <label>Tên đăng nhập</label>
+                                    <label>Tên người dùng</label>
                                     <input type="text" class="form-control" value="<?= $Customer['Username'] ?>" name="Username" placeholder="Nhập tên đăng nhập">
                                     <?php if (isset($_SESSION['error']['Username'])) { ?>
                                         <p class="text-danger"> <?= $_SESSION['error']['Username'] ?></p>
@@ -60,7 +60,7 @@
                                     <?php } ?>
                                 </div>
                                 <div class="form-group col-12">
-                                    <label>Số điện thoại</label>
+                                    <label>SĐT</label>
                                     <input type="text" class="form-control" value="<?= $Customer['Phone'] ?>" name="Phone" placeholder="Nhập số điện thoại">
                                     <?php if (isset($_SESSION['error']['Phone'])) { ?>
                                         <p class="text-danger"> <?= $_SESSION['error']['Phone'] ?></p>

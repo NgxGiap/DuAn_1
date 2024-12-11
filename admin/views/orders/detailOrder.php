@@ -65,7 +65,7 @@
                             <div class="col-12">
                                 <h4>
                                     <i class="nav-icon fab fa-product-hunt"></i> High Tech - NVG.
-                                    <small class="float-right">Date: <?= $orders['OrderDate'] ?></small>
+                                    <small class="float-right">Ngày đặt: <?= $orders['OrderDate'] ?></small>
                                 </h4>
                             </div>
                             <!-- /.col -->
@@ -77,7 +77,7 @@
                                 <address>
                                     <strong><?= $orders['FullName'] ?></strong><br>
                                     Email: <?= $orders['Email'] ?><br>
-                                    Phone: <?= $orders['Phone'] ?><br>
+                                    SĐT: <?= $orders['Phone'] ?><br>
                                 </address>
                             </div>
                             <!-- /.col -->
@@ -86,8 +86,8 @@
                                 <address>
                                     <strong><?= $orders['RecipientName'] ?></strong><br>
                                     Email: <?= $orders['RecipientEmail'] ?><br>
-                                    Phone: <?= $orders['RecipientPhone'] ?><br>
-                                    Address: <?= $orders['RecipientAddress'] ?><br>
+                                    SĐT: <?= $orders['RecipientPhone'] ?><br>
+                                    Địa chỉ: <?= $orders['RecipientAddress'] ?><br>
                                 </address>
                             </div>
                             <!-- /.col -->
@@ -96,7 +96,7 @@
                                 <address>
                                     <strong>Mã đơn hàng: <?= $orders['OrderCode'] ?></strong><br>
                                     Tổng tiền: <?= $orders['TotalPrice'] ?><br>
-                                    Note: <?= $orders['Note'] ?><br>
+                                    Ghi chú: <?= $orders['Note'] ?><br>
                                     Phương thức thanh toán: <?= $orders['Name'] ?><br>
                                 </address>
                             </div>

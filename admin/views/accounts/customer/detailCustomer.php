@@ -36,7 +36,7 @@
                                 <td><?= $Customer['FullName'] ?></td>
                             </tr>
                             <tr>
-                                <th>Username</th>
+                                <th>Tên người dùng</th>
                                 <td><?= $Customer['Username'] ?></td>
                             </tr>
                             <tr>
@@ -44,7 +44,7 @@
                                 <td><?= $Customer['Email'] ?></td>
                             </tr>
                             <tr>
-                                <th>Phone</th>
+                                <th>SĐT</th>
                                 <td><?= $Customer['Phone'] ?></td>
                             </tr>
                             <tr>
@@ -65,7 +65,7 @@
                                 <th>STT</th>
                                 <th>Mã đơn hàng</th>
                                 <th>Tên người nhận</th>
-                                <th>Số điện thoại</th>
+                                <th>SĐT</th>
                                 <th>Ngày đặt</th>
                                 <th>Tổng tiền</th>
                                 <th>Trạng thái</th>
@@ -107,7 +107,7 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Sản phẩm</th>
-                                <th>Người dùng</th>
+                                <th>Tên người dùng</th>
                                 <th>Nội dung</th>
                                 <th>Ngày đăng</th>
                                 <th>Trạng thái</th>

@@ -42,7 +42,8 @@
                                         <th>STT</th>
                                         <th>Mã đơn hàng</th>
                                         <th>Tên người nhận</th>
-                                        <th>Số điện thoại</th>
+                                        <th>SĐT</th>
+                                        <th>Địa chỉ</th>
                                         <th>Ngày đặt</th>
                                         <th>Tổng tiền</th>
                                         <th>Trạng thái</th>
@@ -56,6 +57,7 @@
                                             <td><?= $order['OrderCode'] ?></td>
                                             <td><?= $order['RecipientName'] ?></td>
                                             <td><?= $order['RecipientPhone'] ?></td>
+                                            <td><?= $order['RecipientAddress'] ?></td>
                                             <td><?= $order['OrderDate'] ?></td>
                                             <td><?= $order['TotalPrice'] ?></td>
                                             <td><?= $order['StatusName'] ?></td>
@@ -77,7 +79,8 @@
                                         <th>STT</th>
                                         <th>Mã đơn hàng</th>
                                         <th>Tên người nhận</th>
-                                        <th>Số điện thoại</th>
+                                        <th>SĐT</th>
+                                        <th>Địa chỉ</th>
                                         <th>Ngày đặt</th>
                                         <th>Tổng tiền</th>
                                         <th>Trạng thái</th>

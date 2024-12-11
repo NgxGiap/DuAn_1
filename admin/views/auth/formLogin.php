@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Admin</title>
+    <title>Đăng nhập Admin</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -21,7 +21,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="./assets/index2.html" class="h1"><b>Mobile</b>City</a>
+                <a href="./assets/index2.html" class="h1"><b>High</b>Tech</a>
             </div>
             <div class="card-body">
                 <?php if (isset($_SESSION['error'])) { ?>
@@ -49,7 +49,7 @@
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -57,9 +57,9 @@
 
                 <!-- /.social-auth-links -->
 
-                <p class="mb-1">
+                <!-- <p class="mb-1">
                     <a href="#">Quên mật khẩu</a>
-                </p>
+                </p> -->
             </div>
             <!-- /.card-body -->
         </div>

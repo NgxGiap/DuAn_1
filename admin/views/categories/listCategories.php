@@ -33,7 +33,7 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="<?= BASE_URL_ADMIN . '?act=form-add-categories' ?>">
-                                <button class="btn btn-success">Add Category</button>
+                                <button class="btn btn-success">Thêm danh mục</button>
                             </a>
                         </div>
                         <!-- /.card-header -->
@@ -42,9 +42,9 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Category Names</th>
-                                        <th>Description</th>
-                                        <th>Action</th>
+                                        <th>Tên danh mục</th>
+                                        <th>Mô tả</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,9 +68,9 @@
                                 <tfoot>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Category Names</th>
-                                        <th>Description</th>
-                                        <th>Action</th>
+                                        <th>Tên danh mục</th>
+                                        <th>Mô tả</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </tfoot>
                             </table>

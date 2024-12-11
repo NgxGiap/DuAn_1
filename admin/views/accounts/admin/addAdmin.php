@@ -38,8 +38,8 @@
                         <form action="<?= BASE_URL_ADMIN . '?act=add-admin' ?>" method="POST">
                             <div class="card-body">
                                 <div class="form-group col-12">
-                                    <label>Tên đăng nhập</label>
-                                    <input type="text" class="form-control" name="Username" placeholder="Nhập tên đăng nhập">
+                                    <label>Tên người dùng</label>
+                                    <input type="text" class="form-control" name="Username" placeholder="Nhập tên người dùng">
                                     <?php if (isset($_SESSION['error']['Username'])) { ?>
                                         <p class="text-danger"> <?= $_SESSION['error']['Username'] ?></p>
                                     <?php } ?>

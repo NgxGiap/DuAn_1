@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý tài khoản cá nhân</h1>
+                    <h1>Quản lý tài khoản Cá nhân</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -32,7 +32,7 @@
                 <div class="col-md-3">
                     <div class="text-center">
                         <img src="https://th.bing.com/th/id/OIP.9IwgOXmpwMDGFmzb6LpUoQHaHa?rs=1&pid=ImgDetMain" width="200px" class="avatar img-circle" alt="avatar">
-                        <h6 class="mt-2">User name: <?= $info['Username'] ?></h6>
+                        <h6 class="mt-2">Tên người dùng: <?= $info['Username'] ?></h6>
                         <h6 class="mt-2">Chức vụ: <?= $info['RoleID'] ?></h6>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         <h3>Thông tin cá nhân</h3>
                         <input type="hidden" name="AccountID" value="<?= $info['AccountID'] ?>">
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">User name:</label>
+                            <label class="col-lg-3 control-label">Tên người dùng:</label>
                             <div class="col-lg-12">
                                 <input class="form-control" name="Username" type="text" value="<?= $info['Username'] ?>" placeholder="Sửa user name">
                             </div>
@@ -80,7 +80,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
                             <div class="col-md-12">
-                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                <input type="submit" class="btn btn-primary" value="Lưu thay đổi">
                             </div>
                         </div>
                     </form>
@@ -124,7 +124,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
                             <div class="col-md-12">
-                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                                <input type="submit" class="btn btn-primary" value="Lưu thay đổi">
                             </div>
                         </div>
                     </form>

@@ -42,7 +42,7 @@
                                                 <?php endforeach ?>
                                             </ul>
                                         </li>
-                                        <li><a href="#">Giới thiệu</a></li>
+                                        <li><a href="?act=introduce">Giới thiệu</a></li>
                                         <li><a href="?act=contact-us">Liên hệ</a></li>
                                     </ul>
                                 </nav>

@@ -39,8 +39,8 @@
                             <input type="hidden" name="id_admin" value="<?= $Admin['AccountID'] ?>">
                             <div class="card-body">
                                 <div class="form-group col-12">
-                                    <label>Tên đăng nhập</label>
-                                    <input type="text" class="form-control" value="<?= $Admin['Username'] ?>" name="Username" placeholder="Nhập tên đăng nhập">
+                                    <label>Tên người dùng</label>
+                                    <input type="text" class="form-control" value="<?= $Admin['Username'] ?>" name="Username" placeholder="Nhập tên người dùng">
                                     <?php if (isset($_SESSION['error']['Username'])) { ?>
                                         <p class="text-danger"> <?= $_SESSION['error']['Username'] ?></p>
                                     <?php } ?>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Xác nhận</button>
                             </div>
                         </form>
                     </div>

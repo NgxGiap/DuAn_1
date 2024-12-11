@@ -49,7 +49,7 @@
                                     <textarea name="Description" id="" class="form-control" placeholder="Nhập mô tả"></textarea>
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary">Xác nhận</button>
                                     </div>
                         </form>
                     </div>

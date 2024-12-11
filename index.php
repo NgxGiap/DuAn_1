@@ -49,6 +49,7 @@ match ($act) {
     'search-products' => (new HomeController())->searchProducts(),
 
     'contact-us' => (new HomeController())->contactUs(),
+    'introduce' => (new HomeController())->introduce(),
 
     'add-comment' => (new HomeController())->addComment(),
 

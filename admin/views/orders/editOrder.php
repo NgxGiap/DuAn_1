@@ -46,7 +46,7 @@
                                     <?php } ?>
                                 </div>
                                 <div class="form-group">
-                                    <label>Tên người nhận</label>
+                                    <label>Email người nhận</label>
                                     <input type="text" class="form-control" name="RecipientEmail" value="<?= $orders['RecipientEmail'] ?>" placeholder="Nhập email người nhận">
                                     <?php if (isset($error['RecipientEmail'])) { ?>
                                         <p class="text-danger"> <?= $error['RecipientEmail'] ?></p>
@@ -67,7 +67,7 @@
                                     <?php } ?>
                                 </div>
                                 <div class="form-group">
-                                    <label>Note</label>
+                                    <label>Ghi chú</label>
                                     <textarea name="Note" id="" class="form-control" placeholder="Nhập note"><?= $orders['Note'] ?></textarea>
                                 </div>
                                 <hr>
@@ -97,7 +97,7 @@
                                     <?php } ?>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
                                 </div>
                         </form>
                     </div>

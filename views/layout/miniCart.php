@@ -50,7 +50,7 @@
                             </li>
                             <li>
                                 <span>Vận chuyển</span>
-                                <span><strong>30.000 đ</strong></span>
+                                <span><strong>Miễn phí ship toàn quốc</strong></span>
                             </li>
                             <!-- <li>
                                 <span>VAT (20%)</span>
@@ -58,7 +58,7 @@
                             </li> -->
                             <li class="total">
                                 <span>Tổng tiền</span>
-                                <span><strong><?php echo formatPrice($totalCart + 30000) . ' đ'; ?></strong></span>
+                                <span><strong><?php echo formatPrice($totalCart) . ' đ'; ?></strong></span>
                             </li>
                         </ul>
                     </div>
@@ -66,7 +66,7 @@
 
                 <div class="minicart-button">
                     <a href="<?= BASE_URL . '?act=cart' ?>"><i class="fa fa-shopping-cart"></i>Xem giỏ hàng</a>
-                    <a href="<?= BASE_URL . '?act=check-out' ?>"><i class="fa fa-share"></i> Checkout</a>
+                    <a href="<?= BASE_URL . '?act=check-out' ?>"><i class="fa fa-share"></i> Thanh toán</a>
                 </div>
             </div>
         </div>

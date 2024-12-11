@@ -33,7 +33,7 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="<?= BASE_URL_ADMIN . '?act=form-add-admin' ?>">
-                                <button class="btn btn-success">Add Account</button>
+                                <button class="btn btn-success">Thêm tài khoản Admin</button>
                             </a>
                         </div>
                         <!-- /.card-header -->
@@ -42,11 +42,11 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>User Name</th>
-                                        <th>Full Name</th>
+                                        <th>Tên người dùng</th>
+                                        <th>Họ tên</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Action</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,11 +72,11 @@
                                 <tfoot>
                                     <tr>
                                         <th>STT</th>
-                                        <th>User Name</th>
-                                        <th>Full Name</th>
+                                        <th>Tên người dùng</th>
+                                        <th>Họ tên</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Action</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </tfoot>
                             </table>

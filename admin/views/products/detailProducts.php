@@ -46,12 +46,12 @@
                         <h3 class="my-3">Tên sản phẩm: <?= $product['ProductName'] ?></h3>
                         <!-- <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p> -->
                         <hr>
-                        <h4 class="mt-3">Price: <small><?= $product['Price'] ?></small></h4>
-                        <h4 class="mt-3">StockQuantity: <small><?= $product['StockQuantity'] ?></small></h4>
-                        <h4 class="mt-3">Color: <small><?= $product['Color'] ?></small></h4>
-                        <h4 class="mt-3">Storage: <small><?= $product['Storage'] ?></small></h4>
-                        <h4 class="mt-3">Size: <small><?= $product['Size'] ?></small></h4>
-                        <h4 class="mt-3">Category: <small><?= $product['name'] ?></small></h4>
+                        <h4 class="mt-3">Giá: <small><?= $product['Price'] ?></small></h4>
+                        <h4 class="mt-3">Số lượng: <small><?= $product['StockQuantity'] ?></small></h4>
+                        <h4 class="mt-3">Màu: <small><?= $product['Color'] ?></small></h4>
+                        <h4 class="mt-3">Dung lượng: <small><?= $product['Storage'] ?></small></h4>
+                        <h4 class="mt-3">Kích thước: <small><?= $product['Size'] ?></small></h4>
+                        <h4 class="mt-3">Danh mục: <small><?= $product['name'] ?></small></h4>
                         <h4 class="mt-3">SKU: <small><?= $product['SKU'] ?></small></h4>
                         <h4 class="mt-3">Mô tả: <small><?= $product['Description'] ?></small></h4>
 

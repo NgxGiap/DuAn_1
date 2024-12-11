@@ -17,7 +17,7 @@ require_once 'views/layout/menu.php';
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?= BASE_URL ?>"><i class="fa fa-home"></i></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Register</li>
+                                <li class="breadcrumb-item active" aria-current="page">Đăng ký</li>
                             </ul>
                         </nav>
                     </div>
@@ -43,13 +43,13 @@ require_once 'views/layout/menu.php';
                             <?php } ?>
                             <form action="<?= BASE_URL . '?act=check-register' ?>" method="post">
                                 <div class="single-input-item">
-                                    <input type="text" placeholder="User Name" name="Username" required />
+                                    <input type="text" placeholder="Tên người dùng" name="Username" required />
                                 </div>
                                 <div class="single-input-item">
-                                    <input type="email" placeholder="Email" name="Email" required />
+                                    <input type="email" placeholder="Nhập Email" name="Email" required />
                                 </div>
                                 <div class="single-input-item">
-                                    <input type="password" placeholder="Enter your Password" name="PasswordHash" required />
+                                    <input type="password" placeholder="Nhập mật khẩu" name="PasswordHash" required />
                                 </div>
                                 <div class="single-input-item">
                                     <div class="login-reg-form-meta d-flex align-items-center justify-content-between">

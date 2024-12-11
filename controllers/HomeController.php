@@ -551,6 +551,11 @@ class HomeController
         require_once './views/contactUs.php';
     }
 
+    public function introduce()
+    {
+        require_once './views/introduce.php';
+    }
+
     public function updateCart()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

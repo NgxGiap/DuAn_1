@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý tài khoản Customer</h1>
+                    <h1>Quản lý tài khoản Khách hàng</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -39,12 +39,12 @@
                                 <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>User Name</th>
-                                        <th>Full Name</th>
+                                        <th>Tên người dùng</th>
+                                        <th>Họ tên</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Created At</th>
-                                        <th>Action</th>
+                                        <th>SĐT</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,12 +76,12 @@
                                 <tfoot>
                                     <tr>
                                         <th>STT</th>
-                                        <th>User Name</th>
-                                        <th>Full Name</th>
+                                        <th>Tên người dùng</th>
+                                        <th>Họ tên</th>
                                         <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Created At</th>
-                                        <th>Action</th>
+                                        <th>SĐT</th>
+                                        <th>Ngày tạo</th>
+                                        <th>Thao tác</th>
                                     </tr>
                                 </tfoot>
                             </table>
