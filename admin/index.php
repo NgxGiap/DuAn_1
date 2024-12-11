@@ -10,12 +10,14 @@ require_once './controllers/AdminProductsController.php';
 require_once './controllers/AdminOrdersController.php';
 require_once './controllers/AdminReportsController.php';
 require_once './controllers/AdminAccountsController.php';
+require_once './controllers/AdminCommentsController.php';
 // Require toàn bộ file Models
 require_once './models/AdminCategories.php';
 require_once './models/AdminProducts.php';
 require_once './models/AdminOrders.php';
 require_once './models/AdminAccounts.php';
 require_once './models/AdminReports.php';
+require_once './models/AdminComments.php';
 // Route
 $act = $_GET['act'] ?? '/';
 
@@ -50,6 +52,7 @@ match ($act) {
     'detail-products' => (new AdminProductsController())->detailProducts(),
 
     // Router comments
+    'list-comments' => (new AdminCommentsController())->listComments(),
     'update-status-comments' => (new AdminProductsController())->updateStatusComments(),
 
     // Router orders

@@ -214,4 +214,42 @@ class Accounts
             echo "Error: " . $e->getMessage();
         }
     }
+
+    public function getAccountByEmailAndPhone($Email, $Phone)
+    {
+        try {
+            $sql = "SELECT * FROM `accounts` WHERE Email = :Email AND Phone = :Phone";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':Email' => $Email,
+                ':Phone' => $Phone,
+            ]);
+
+            return $stmt->fetch(); // Lấy thông tin tài khoản (dạng mảng)
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function updatePassword($AccountID, $newPasswordHash)
+    {
+        try {
+            $sql = "UPDATE `accounts` SET PasswordHash = :PasswordHash WHERE AccountID = :AccountID";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':PasswordHash' => $newPasswordHash,
+                ':AccountID' => $AccountID,
+            ]);
+
+            return $stmt->rowCount() > 0; // Trả về true nếu cập nhật thành công
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }

@@ -593,6 +593,47 @@ class HomeController
         }
     }
 
+    public function formForgotPassword()
+    {
+        require_once './views/auth/formForgotPassword.php';
+
+        deleteSessionError();
+    }
+
+    public function resetPassword()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = $_POST['email'] ?? null;
+            $phone = $_POST['phone'] ?? null;
+
+            if ($email && $phone) {
+                // Gọi model để kiểm tra thông tin
+                $account = $this->modelAccounts->getAccountByEmailAndPhone($email, $phone);
+
+                if ($account) {
+                    // Mật khẩu mặc định
+                    $newPassword = "123456";
+                    $newPasswordHash = password_hash($newPassword, PASSWORD_BCRYPT);
+
+                    // Cập nhật mật khẩu trong DB
+                    $updateResult = $this->modelAccounts->updatePassword($account['AccountID'], $newPasswordHash);
+
+                    if ($updateResult) {
+                        echo "<script>alert('Mật khẩu đã được đặt lại thành: 123456'); window.location.href='" . BASE_URL . "?act=login';</script>";
+                    } else {
+                        echo "<script>alert('Có lỗi xảy ra. Vui lòng thử lại!'); window.history.back();</script>";
+                    }
+                } else {
+                    echo "<script>alert('Email hoặc số điện thoại không đúng! Vui lòng thử lại.'); window.history.back();</script>";
+                }
+            } else {
+                echo "<script>alert('Vui lòng nhập đủ thông tin!'); window.history.back();</script>";
+            }
+        } else {
+            echo "<script>alert('Phương thức không hợp lệ!'); window.history.back();</script>";
+        }
+    }
+
 
 
     // public function removeFromCart()

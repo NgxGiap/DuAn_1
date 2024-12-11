@@ -165,23 +165,32 @@ require_once 'layout/menu.php';
                                         class="tab-content reviews-tab">
                                         <div class="tab-pane fade show active" id="tab_three">
                                             <?php foreach ($listComments as $comment): ?>
-                                                <div
-                                                    class="total-reviews mt-3">
-                                                    <div
-                                                        class="rev-avatar">
-                                                        <img
-                                                            src="<?= $comment['Avatar'] ?>" alt>
-                                                    </div>
-                                                    <div
-                                                        class="review-box">
-                                                        <div
-                                                            class="post-author">
-                                                            <p><span><?= $comment['Username'] ?></span> - Ngày bình luận: <?= $comment['CommentDate'] ?></p>
+                                                <?php if ($comment['Status'] == 'hide'): ?>
+                                                    <div class="total-reviews mt-3">
+                                                        <div class="rev-avatar">
+                                                            <img src="<?= htmlspecialchars($comment['Avatar']) ?>" alt>
                                                         </div>
-                                                        <p><?= $comment['Content'] ?></p>
+                                                        <div class="review-box">
+                                                            <div class="post-author">
+                                                                <p><span><?= htmlspecialchars($comment['Username']) ?></span> - Ngày bình luận: <?= htmlspecialchars($comment['CommentDate']) ?></p>
+                                                            </div>
+                                                            <p>Bình luận đã bị ẩn vì vi phạm!</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            <?php endforeach ?>
+                                                <?php else: ?>
+                                                    <div class="total-reviews mt-3">
+                                                        <div class="rev-avatar">
+                                                            <img src="<?= htmlspecialchars($comment['Avatar']) ?>" alt>
+                                                        </div>
+                                                        <div class="review-box">
+                                                            <div class="post-author">
+                                                                <p><span><?= htmlspecialchars($comment['Username']) ?></span> - Ngày bình luận: <?= htmlspecialchars($comment['CommentDate']) ?></p>
+                                                            </div>
+                                                            <p><?= htmlspecialchars($comment['Content']) ?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                             <form action="<?= BASE_URL ?>?act=add-comment" method="POST" class="review-form">
                                                 <input type="hidden" name="ProductID" value="<?= $abc['ProductID'] ?>">
 

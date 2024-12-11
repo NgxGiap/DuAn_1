@@ -17,7 +17,7 @@ require_once 'views/layout/menu.php';
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<?= BASE_URL ?>"><i class="fa fa-home"></i></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">login</li>
+                                <li class="breadcrumb-item active" aria-current="page">Quên mật khẩu</li>
                             </ul>
                         </nav>
                     </div>
@@ -35,27 +35,21 @@ require_once 'views/layout/menu.php';
                     <!-- Login Content Start -->
                     <div class="col-lg-12">
                         <div class="login-reg-form-wrap">
-                            <h5 class="text-center">Đăng nhập</h5>
+                            <h5 class="text-center">Quên mật khẩu</h5>
                             <?php if (isset($_SESSION['error'])) { ?>
                                 <p class="text-danger login-box-msg text-center"> <?= $_SESSION['error'] ?></p>
                             <?php } else { ?>
-                                <p class="login-box-msg text-center">Vui lòng đăng nhập</p>
+                                <p class="login-box-msg text-center">Vui lòng nhập thông tin</p>
                             <?php } ?>
-                            <form action="<?= BASE_URL . '?act=check-login' ?>" method="post">
+                            <form method="POST" action="<?= BASE_URL . '?act=resetPassword' ?>">
                                 <div class="single-input-item">
-                                    <input type="email" placeholder="Email" name="Email" required />
+                                    <input type="email" placeholder="Nhập Email của tài khoản" name="email" required />
                                 </div>
                                 <div class="single-input-item">
-                                    <input type="password" placeholder="Enter your Password" name="PasswordHash" required />
+                                    <input type="text" placeholder="Nhập số điện thoại của tài khoản" name="phone" required />
                                 </div>
                                 <div class="single-input-item">
-                                    <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
-                                        <a href="<?= BASE_URL . '?act=register' ?>" class="forget-pwd">Chưa có tài khoản?</a>
-                                        <a href="<?= BASE_URL . '?act=forgot' ?>" class="forget-pwd">Quên mật khẩu?</a>
-                                    </div>
-                                </div>
-                                <div class="single-input-item">
-                                    <button class="btn btn-sqr">Đăng nhập</button>
+                                    <button class="btn btn-sqr">Đặt lại mật khẩu</button>
                                 </div>
                             </form>
                         </div>

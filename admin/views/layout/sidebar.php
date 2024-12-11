@@ -61,6 +61,15 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="<?= BASE_URL_ADMIN . '?act=list-comments' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-comment"></i>
+                        <p>
+                            Bình luận
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>

@@ -37,6 +37,9 @@ match ($act) {
 
     'logout' => (new HomeController())->logout(),
 
+    'forgot' => (new HomeController())->formForgotPassword(),
+    'resetPassword' => (new HomeController())->resetPassword(),
+
     // Router info
     'form-edit-info' => (new HomeController())->formEditInfo(),
     'edit-info' => (new HomeController())->postEditInfo(),

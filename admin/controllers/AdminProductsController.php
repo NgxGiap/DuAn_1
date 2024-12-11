@@ -298,7 +298,7 @@ class AdminProductsController
         $CommentID = $_POST['CommentID'];
         $name_view = $_POST['name_view'];
         $comment = $this->modelProducts->getDetailComment($CommentID);
-        // var_dump($id_customer);
+        // var_dump($name_view);
         // die();
         if ($comment) {
             $updateStatus = '';
@@ -310,9 +310,11 @@ class AdminProductsController
             $status = $this->modelProducts->updateStatusComments($CommentID, $updateStatus);
             if ($status) {
                 if ($name_view == 'detail_customer') {
-                    header("Location: " . BASE_URL_ADMIN . '?act=detail-customer&id_customer=' . $$comment['AccountID']);
-                } else {
+                    header("Location: " . BASE_URL_ADMIN . '?act=detail-customer&id_customer=' . $comment['AccountID']);
+                } elseif ($name_view == 'detail_product') {
                     header("Location: " . BASE_URL_ADMIN . '?act=detail-products&id=' . $comment['ProductID']);
+                } else {
+                    header("Location: " . BASE_URL_ADMIN . '?act=list-comments');
                 }
             }
         }
