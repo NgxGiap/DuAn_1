@@ -132,15 +132,24 @@ class HomeController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_SESSION['user_client'])) {
                 $mail = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
-
+                // var_dump($mail);
+                // die();
+                if (!$mail) {
+                    $EmailUserClient = $_SESSION['user_client'];
+                    $mail = $this->modelAccounts->getAccountFromEmailUserClient($EmailUserClient);
+                    // var_dump($mail);
+                    // die();
+                }
                 $cart = $this->modelCart->getCartFromID($mail['AccountID']);
 
-                // var_dump($_POST);
-                // die;
+
                 if (!$cart) {
+                    // var_dump($mail['AccountID']);
+                    // die;
                     $cartID = $this->modelCart->addCart($mail['AccountID']);
                     $cart = ['CartID' => $cartID];
-
+                    // var_dump($cartID);
+                    // die();
                     $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
                 } else {
                     $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
@@ -189,17 +198,24 @@ class HomeController
         // die();
         if (isset($_SESSION['user_client'])) {
             $mail = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
-            // var_dump($mail);
-            // die();
+
+            if (!$mail) {
+                $EmailUserClient = $_SESSION['user_client'];
+                $mail = $this->modelAccounts->getAccountFromEmailUserClient($EmailUserClient);
+                // var_dump($mail);
+                // die();
+            }
             $cart = $this->modelCart->getCartFromID($mail['AccountID']);
 
             if (!$cart) {
                 $cartID = $this->modelCart->addCart($mail['AccountID']);
                 $cart = ['CartID' => $cartID];
 
-                $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+                $cartdetailabc = $this->modelCart->getCartDetail($cart['CartID']);
             } else {
-                $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+                $cartdetailabc = $this->modelCart->getCartDetail($cart['CartID']);
+                // var_dump($cartdetail);
+                // die();
             }
 
             require_once './views/cart.php';
@@ -212,8 +228,10 @@ class HomeController
     {
         if (isset($_SESSION['user_client'])) {
             $user = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
-            // var_dump($user);
-            // die();
+            if (!$user) {
+                $EmailUserClient = $_SESSION['user_client'];
+                $user = $this->modelAccounts->getAccountFromEmailUserClient($EmailUserClient);
+            }
             $cart = $this->modelCart->getCartFromID($user['AccountID']);
 
             if (!$cart) {
@@ -249,9 +267,14 @@ class HomeController
             $formattedDate = $OrderDate->format('Y-m-d H:i:s');
             $Status = '1';
             $user = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
+            if (!$user) {
+                $EmailUserClient = $_SESSION['user_client'];
+                $user = $this->modelAccounts->getAccountFromEmailUserClient($EmailUserClient);
+            }
             $AccountID = $user['AccountID'];
             $OrderCode = 'DH-' . rand(1000, 9999);
-
+            // var_dump($user);
+            // die;
             // Thêm đơn hàng
             $orderID = $this->modelOrder->addOrder(
                 $AccountID,
@@ -266,7 +289,22 @@ class HomeController
                 $OrderCode,
                 $Status
             );
-
+            $error = [];
+            if (empty($RecipientName)) {
+                $error['RecipientName'] = 'Tên người nhận không được để trống';
+            }
+            if (empty($RecipientEmail)) {
+                $error['RecipientEmail'] = 'Email người nhận không được để trống';
+            }
+            if (empty($RecipientPhone)) {
+                $error['RecipientPhone'] = 'Số điện thoại lượng người nhận không được để trống';
+            }
+            if (empty($RecipientAddress)) {
+                $error['RecipientAddress'] = 'Địa chỉ người nhận không được để trống';
+            }
+            $_SESSION['error'] = $error;
+            // var_dump($error);
+            // die();
             if ($orderID) {
                 // Lấy chi tiết giỏ hàng hiện tại
                 $cart = $this->modelCart->getCartFromID($AccountID);
@@ -297,12 +335,15 @@ class HomeController
     // Build
     public function minicart()
     {
-        $cartdetail = [];
+        $cartdetailxyz = [];
         // var_dump($cartdetail);
         if (isset($_SESSION['user_client'])) {
             // var_dump('ccc');
             $mail = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
-
+            if (!$mail) {
+                $EmailUserClient = $_SESSION['user_client'];
+                $mail = $this->modelAccounts->getAccountFromEmailUserClient($EmailUserClient);
+            }
             if ($mail != false) {
                 $cart = $this->modelCart->getCartFromID($mail['AccountID']);
                 // var_dump($cart);
@@ -310,9 +351,9 @@ class HomeController
                     $cartID = $this->modelCart->addCart($mail['AccountID']);
                     $cart = ['CartID' => $cartID];
 
-                    $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+                    $cartdetailxyz = $this->modelCart->getCartDetail($cart['CartID']);
                 } else {
-                    $cartdetail = $this->modelCart->getCartDetail($cart['CartID']);
+                    $cartdetailxyz = $this->modelCart->getCartDetail($cart['CartID']);
                 }
             }
         }
@@ -320,7 +361,7 @@ class HomeController
         // die();
 
 
-        return $cartdetail;
+        return $cartdetailxyz;
     }
 
     public function listCategories()
@@ -509,4 +550,103 @@ class HomeController
     {
         require_once './views/contactUs.php';
     }
+
+    public function updateCart()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Lấy thông tin giỏ hàng từ session
+            if (isset($_SESSION['user_client'])) {
+                $mail = $this->modelAccounts->getAccountFromEmail($_SESSION['user_client']);
+                if (!$mail) {
+                    $EmailUserClient = $_SESSION['user_client'];
+                    $mail = $this->modelAccounts->getAccountFromEmailUserClient($EmailUserClient);
+                }
+
+                $cart = $this->modelCart->getCartFromID($mail['AccountID']);
+                $cartId = $cart['CartID'];
+
+                // Lấy dữ liệu từ form
+                $productIds = $_POST['product_ids'] ?? [];
+                $quantities = $_POST['quantities'] ?? [];
+                $removeIds = $_POST['remove_ids'] ?? [];
+
+                // Xử lý cập nhật số lượng
+                foreach ($productIds as $index => $productId) {
+                    $quantity = (int)$quantities[$index];
+                    if ($quantity > 0) {
+                        $this->modelCart->updateCartQuantity($productId, $quantity, $cartId);
+                    }
+                }
+
+                // Xử lý xóa sản phẩm
+                foreach ($removeIds as $productId) {
+                    $this->modelCart->removeProductFromCart($productId, $cartId);
+                }
+
+                // Điều hướng lại về giỏ hàng
+                header("Location: " . BASE_URL . "?act=cart");
+                exit();
+            } else {
+                header("Location: " . BASE_URL . "?act=login");
+                exit();
+            }
+        }
+    }
+
+
+
+    // public function removeFromCart()
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         $productID = $_POST['product_id'] ?? null;
+    //         // var_dump($_POST);
+    //         // die;
+    //         if ($productID) {
+    //             // Lấy thông tin giỏ hàng hiện tại từ session hoặc database
+    //             $Email = $_SESSION['user_client'];
+    //             $abcd = $this->modelAccounts->getAccountFormEmail($Email);
+    //             $accountID = $abcd['AccountID'];
+    //             $cart = $this->modelCart->getCartFromID($accountID);
+    //             // var_dump($cart);
+    //             // die();
+    //             if ($cart) {
+    //                 $this->modelCart->removeProductFromCart($cart['CartID'], $productID);
+    //             }
+    //         }
+    //     }
+    //     // Redirect về giỏ hàng
+    //     header("Location: " . BASE_URL . '?act=cart');
+    //     exit();
+    // }
+
+    // public function updateCart()
+    // {
+    //     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    //         $productIDs = $_POST['product_ids'] ?? [];
+    //         $quantities = $_POST['quantities'] ?? [];
+
+    //         if (!empty($productIDs) && !empty($quantities)) {
+    //             // Lấy thông tin giỏ hàng hiện tại từ session hoặc database
+    //             $Email = $_SESSION['user_client'];
+    //             $abc = $this->modelAccounts->getAccountFormEmailUpdate($Email);
+    //             $accountID = $abc['AccountID'];
+    //             // $accountID = $this->modelAccounts->getAccountID();
+    //             $cart = $this->modelCart->getCartFromID($accountID);
+    //             // var_dump($productIDs);
+    //             // var_dump($quantities);
+    //             // var_dump($accountID);
+    //             // var_dump($cart);
+    //             // die();
+    //             if ($cart) {
+    //                 foreach ($productIDs as $index => $productID) {
+    //                     $quantity = $quantities[$index];
+    //                     $this->modelCart->updateProductQuantity($cart['CartID'], $productID, $quantity);
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     // Redirect về giỏ hàng
+    //     header("Location: " . BASE_URL . '?act=cart');
+    //     exit();
+    // }
 }

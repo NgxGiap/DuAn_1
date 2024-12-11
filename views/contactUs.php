@@ -26,34 +26,34 @@ require_once 'layout/menu.php';
 
             <h3>Liên hệ với chúng tôi:</h3>
             <form action="" class="form">
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Họ và tên:</label>
+                <div class="form-group single-input-item">
+                    <label class="col-lg-3 control-label ">Họ và tên:</label>
                     <div class="col-lg-12">
                         <input class="form-control" type="text" placeholder="Nhập họ và tên">
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group single-input-item">
                     <label class="col-lg-3 control-label">Email:</label>
                     <div class="col-lg-12">
                         <input class="form-control" type="email" placeholder="Nhập email">
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group single-input-item">
                     <label class="col-lg-3 control-label">Số điện thoại:</label>
                     <div class="col-lg-12">
                         <input class="form-control" type="text" placeholder="Nhập số điện thoại">
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group single-input-item">
                     <label class="col-lg-3 control-label">Nội dung:</label>
                     <div class="col-lg-12">
                         <textarea class="col-lg-12" name="" id="" placeholder="Nhập nội dung"></textarea>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <div>
+                        <button type="submit" class="btn btn-sqr">Submit</button>
                     </div>
                 </div>
             </form>

@@ -15,6 +15,7 @@ require_once './models/AdminCategories.php';
 require_once './models/AdminProducts.php';
 require_once './models/AdminOrders.php';
 require_once './models/AdminAccounts.php';
+require_once './models/AdminReports.php';
 // Route
 $act = $_GET['act'] ?? '/';
 
@@ -28,6 +29,7 @@ if ($act !== 'login-admin' && $act !== 'check-login-admin' && $act !== 'logout-a
 match ($act) {
     // Router reports - home
     '/' => (new AdminReportsController())->home(),
+    'home' => (new AdminReportsController())->home(),
 
     // Router categories
     'list-categories' => (new AdminCategoriesController())->listCategories(),

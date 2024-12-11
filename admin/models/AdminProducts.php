@@ -333,4 +333,35 @@ class AdminProducts
             echo "Error: " . $e->getMessage();
         }
     }
+
+    // Report
+    public function getTotalProducts()
+    {
+        try {
+            $sql = 'SELECT COUNT(*) AS total_products FROM products';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetch()['total_products'];
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getProductCountByCategory()
+    {
+        try {
+            $sql = 'SELECT categories.name, COUNT(products.ProductID) AS product_count
+                FROM categories
+                LEFT JOIN products ON categories.CategoryID = products.CategoryID
+                GROUP BY categories.name';
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

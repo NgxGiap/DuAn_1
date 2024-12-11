@@ -38,77 +38,69 @@ require_once 'layout/menu.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <!-- Cart Table Area -->
-                        <div class="cart-table table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th
-                                            class="pro-thumbnail">Ảnh sản phẩm</th>
-                                        <th
-                                            class="pro-title">Tên sản phẩm</th>
-                                        <th class="pro-price">Giá</th>
-                                        <th
-                                            class="pro-quantity">Số lượng</th>
-                                        <th
-                                            class="pro-subtotal">Thành tiền</th>
-                                        <th
-                                            class="pro-remove">Xóa</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $totalCart = 0;
-                                    foreach ($cartdetail as $key => $product):
-                                    ?>
+                        <form method="POST" action="<?= BASE_URL . '?act=updateCart' ?>" id="cart-form">
+                            <div class="cart-table table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td class="pro-thumbnail"><a
-                                                    href="#"><img
-                                                        class="img-fluid"
-                                                        src="<?= BASE_URL . $product['Image'] ?>"
-                                                        alt="Product" /></a></td>
-                                            <td class="pro-title"><a
-                                                    href="#"><?= $product['ProductName'] ?></a></td>
-                                            <td
-                                                class="pro-price"><span>
-                                                    <?= formatPrice($product['Price']) . ' đ' ?></span></td>
-                                            <td class="pro-quantity">
-                                                <div class="pro-qty"><input
-                                                        type="text"
-                                                        value="<?= $product['Quantity'] ?>"></div>
-                                            </td>
-                                            <td
-                                                class="pro-subtotal"><span>
-                                                    <?php
-                                                    $totals = 0;
-                                                    $totals = $product['Price'] * $product['Quantity'];
-                                                    $totalCart += $totals;
-                                                    echo formatPrice($totals) . ' đ';
-                                                    ?>
-                                                </span></td>
-                                            <td class="pro-remove"><a
-                                                    href="#"><i
-                                                        class="fa fa-trash-o"></i></a></td>
+                                            <th class="pro-thumbnail">Ảnh sản phẩm</th>
+                                            <th class="pro-title">Tên sản phẩm</th>
+                                            <th class="pro-price">Giá</th>
+                                            <th class="pro-quantity">Số lượng</th>
+                                            <th class="pro-subtotal">Thành tiền</th>
+                                            <th class="pro-remove">Xóa</th>
                                         </tr>
-                                    <?php endforeach ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- Cart Update Option -->
-                        <div
-                            class="cart-update-option d-block d-md-flex justify-content-between">
-                            <div class="apply-coupon-wrapper">
-                                <form action="#" method="post"
-                                    class=" d-block d-md-flex">
-                                    <input type="text"
-                                        placeholder="Nhập mã giảm giá"
-                                        required />
-                                    <button class="btn btn-sqr">Áp dụng</button>
-                                </form>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $totalCart = 0;
+                                        foreach ($cartdetailabc as $key => $product):
+                                        ?>
+                                            <tr>
+                                                <td class="pro-thumbnail"><a href="#"><img class="img-fluid"
+                                                            src="<?= BASE_URL . $product['Image'] ?>" alt="Product"></a></td>
+                                                <td class="pro-title"><a href="#"><?= $product['ProductName'] ?></a></td>
+                                                <td class="pro-price"><span><?= formatPrice($product['Price']) . ' đ' ?></span></td>
+                                                <td class="pro-quantity">
+                                                    <input type="hidden" name="product_ids[]" value="<?= $product['ProductID'] ?>">
+                                                    <div class="pro-qty">
+                                                        <input type="text" name="quantities[]" value="<?= $product['Quantity'] ?>" min="1" class="form-control">
+                                                    </div>
+                                                </td>
+                                                <td class="pro-subtotal">
+                                                    <span>
+                                                        <?php
+                                                        $totals = $product['Price'] * $product['Quantity'];
+                                                        $totalCart += $totals;
+                                                        echo formatPrice($totals) . ' đ';
+                                                        ?>
+                                                    </span>
+                                                </td>
+                                                <td class="pro-remove">
+                                                    <button type="button" class="btn btn-danger" onclick="return confirmAndRemoveFromCart(event, this)" data-product-id="<?= $product['ProductID'] ?>">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="cart-update">
-                                <a href="#" class="btn btn-sqr">Cập nhật đơn hàng</a>
+                            <div class="cart-update-option d-block d-md-flex justify-content-between">
+                                <div>
+                                    <!-- <form action="#" method="post" class="d-block d-md-flex">
+                                        <input class="col-8" type="hidden" placeholder="Nhập mã giảm giá">
+                                        <button class="btn btn-sqr">Áp dụng</button>
+                                    </form> -->
+                                </div>
+                                <div class="cart-update">
+                                    <button type="submit" class="btn btn-sqr">Cập nhật đơn hàng</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+
+
                     </div>
                 </div>
                 <div class="row">
@@ -124,13 +116,13 @@ require_once 'layout/menu.php';
                                             <td><?php echo formatPrice($totalCart) . ' đ'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Phí vận chuyển</td>
-                                            <td>30.000 đ</td>
+                                            <td>Miễn phí ship toàn quốc</td>
+                                            <td></td>
                                         </tr>
                                         <tr class="total">
                                             <td>Tổng tiền</td>
                                             <td
-                                                class="total-amount"><?php echo formatPrice($totalCart + 30000) . ' đ'; ?></td>
+                                                class="total-amount"><?php echo formatPrice($totalCart) . ' đ'; ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -146,7 +138,39 @@ require_once 'layout/menu.php';
     <!-- cart main wrapper end -->
 </main>
 
+<script>
+    function confirmAndRemoveFromCart(event, button) {
+        // Hiển thị xác nhận
+        const isConfirmed = confirm("Bạn có chắc chắn muốn xóa sản phẩm này?");
+        if (!isConfirmed) {
+            return false; // Người dùng hủy bỏ
+        }
 
+        // Nếu người dùng xác nhận, gọi hàm removeFromCart
+        removeFromCart(event, button);
+        return false; // Ngăn chặn hành vi mặc định
+    }
+
+    function removeFromCart(event, button) {
+        event.preventDefault(); // Ngăn việc form chính submit ngay lập tức
+
+        // Lấy ID sản phẩm cần xóa
+        const productId = button.getAttribute('data-product-id');
+
+        // Tạo input ẩn để truyền dữ liệu xóa sản phẩm vào form
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'remove_ids[]';
+        hiddenInput.value = productId;
+
+        // Thêm input ẩn vào form chính
+        const cartForm = document.getElementById('cart-form');
+        cartForm.appendChild(hiddenInput);
+
+        // Submit form
+        cartForm.submit();
+    }
+</script>
 
 <?php
 require_once 'layout/footer.php';

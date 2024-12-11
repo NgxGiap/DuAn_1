@@ -14,6 +14,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="./assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

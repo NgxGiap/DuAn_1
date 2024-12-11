@@ -101,6 +101,23 @@ class Accounts
         }
     }
 
+    public function getAccountFromEmailUserClient($Email)
+    {
+        try {
+            $sql = "SELECT * FROM `accounts` WHERE Email = :Email";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':Email' => $Email,
+            ]);
+
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function getDetailAccount($id)
     {
         try {
@@ -168,6 +185,23 @@ class Accounts
     {
         try {
             $sql = "SELECT * FROM `accounts` WHERE Email = :Email";
+
+            $stmt = $this->conn->prepare($sql);
+
+            $stmt->execute([
+                ':Email' => $Email,
+            ]);
+
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getAccountFormEmailUpdate($Email)
+    {
+        try {
+            $sql = "SELECT AccountID FROM `accounts` WHERE Email = :Email";
 
             $stmt = $this->conn->prepare($sql);
 

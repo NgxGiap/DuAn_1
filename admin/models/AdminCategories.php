@@ -96,4 +96,18 @@ class AdminCategories
             echo "Error: " . $e->getMessage();
         }
     }
+
+    // Report
+    public function getTotalCategories()
+    {
+        try {
+            $sql = 'SELECT COUNT(*) AS total_categories FROM categories';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetch()['total_categories'];
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

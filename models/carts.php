@@ -65,6 +65,79 @@ class Carts
         }
     }
 
+    // public function removeProductFromCart($cartID, $productID)
+    // {
+    //     try {
+    //         $sql = "DELETE FROM cartdetails WHERE CartID = :CartID AND ProductID = :ProductID";
+    //         $stmt = $this->conn->prepare($sql);
+    //         $stmt->execute([
+    //             ':CartID' => $cartID,
+    //             ':ProductID' => $productID,
+    //         ]);
+    //     } catch (Exception $e) {
+    //         echo "Error: " . $e->getMessage();
+    //     }
+    // }
+
+    public function removeProductFromCart($productId, $cartId)
+    {
+        try {
+            $sql = "DELETE FROM cartdetails WHERE ProductID = :ProductID AND CartID = :CartID";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':ProductID' => $productId,
+                ':CartID' => $cartId
+            ]);
+
+            return true; // Trả về true nếu xóa thành công
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false; // Trả về false nếu xảy ra lỗi
+        }
+    }
+
+
+    public function updateCartQuantity($productId, $quantity, $cartId)
+    {
+        try {
+            $sql = "UPDATE cartdetails 
+                    SET Quantity = :Quantity 
+                    WHERE ProductID = :ProductID AND CartID = :CartID";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':Quantity' => $quantity,
+                ':ProductID' => $productId,
+                ':CartID' => $cartId
+            ]);
+
+            return true; // Trả về true nếu cập nhật thành công
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            return false; // Trả về false nếu xảy ra lỗi
+        }
+    }
+
+
+
+    // public function updateProductQuantity($cartID, $productID, $quantity)
+    // {
+    //     try {
+    //         $sql = "UPDATE cartdetails SET Quantity = :Quantity 
+    //         WHERE CartID = :CartID AND ProductID = :ProductID";
+    //         $stmt = $this->conn->prepare($sql);
+    //         $stmt->execute([
+    //             ':Quantity' => $quantity,
+    //             ':CartID' => $cartID,
+    //             ':ProductID' => $productID,
+    //         ]);
+    //     } catch (Exception $e) {
+    //         echo "Error: " . $e->getMessage();
+    //     }
+    // }
+
+
     public function updateQuantity($CartID, $ProductID, $Quantity)
     {
         try {

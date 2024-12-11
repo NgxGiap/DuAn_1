@@ -16,15 +16,6 @@ require_once './models/comments.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
-// var_dump($_GET['act']);
-// die();
-
-// if($_GET['act']){
-//     $act = $_GET['act'];
-// }else{
-//     $act = '/';
-// }
-
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
 match ($act) {
@@ -57,4 +48,8 @@ match ($act) {
     'contact-us' => (new HomeController())->contactUs(),
 
     'add-comment' => (new HomeController())->addComment(),
+
+    // Cart functionalities
+    // 'removeFromCart' => (new HomeController())->removeFromCart(), // Xóa sản phẩm khỏi giỏ hàng
+    'updateCart' => (new HomeController())->updateCart(),         // Cập nhật số lượng trong giỏ hàng
 };

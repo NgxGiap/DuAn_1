@@ -183,4 +183,18 @@ class AdminAccounts
             echo "Error: " . $e->getMessage();
         }
     }
+
+    // Report
+    public function getTotalCustomers()
+    {
+        try {
+            $sql = 'SELECT COUNT(*) AS total_customers FROM accounts WHERE RoleID = 2';
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetch()['total_customers'];
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }

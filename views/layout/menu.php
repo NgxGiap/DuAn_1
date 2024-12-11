@@ -94,8 +94,8 @@
                                             <div class="notification">
                                                 <?php
                                                 $Quantity = 0;
-                                                $cartdetail =  (new HomeController())->minicart();
-                                                foreach ($cartdetail as $key => $product):
+                                                $cartdetailxyz =  (new HomeController())->minicart();
+                                                foreach ($cartdetailxyz as $key => $product):
                                                 ?>
                                                     <?php
                                                     $Quantity += $product['Quantity'];

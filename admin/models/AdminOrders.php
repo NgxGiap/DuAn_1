@@ -50,7 +50,7 @@ class AdminOrders
             $sql = 'SELECT `orders`.*, order_statuses.StatusName, accounts.*, payment_methods.Name, orderdetails.* FROM `orders`
             INNER JOIN order_statuses ON orders.order_status_id = order_statuses.id 
             INNER JOIN accounts ON orders.AccountID = accounts.AccountID
-            INNER JOIN payment_methods ON orders.OrderID = payment_methods.OrderID
+            INNER JOIN payment_methods ON orders.payment_method_id = payment_methods.ID
             INNER JOIN orderdetails ON orders.OrderID = orderdetails.OrderID
             WHERE orders.OrderID = :id';
 
@@ -131,6 +131,41 @@ class AdminOrders
                 ':id' => $id
             ]);
             return true;
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    // Report
+    public function getTotalRevenue()
+    {
+        try {
+            $sql = 'SELECT SUM(orderdetails.TotalPrice) AS total_revenue 
+            FROM orders 
+            INNER JOIN orderdetails ON orders.OrderID = orderdetails.OrderID 
+            WHERE orders.order_status_id IN(2,4,5,6,7,10);';
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetch()['total_revenue'];
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
+    public function getMonthlyRevenue()
+    {
+        try {
+            $sql = 'SELECT MONTH(OrderDate) AS month, SUM(orderdetails.TotalPrice) AS total_revenue 
+                FROM orders 
+                INNER JOIN orderdetails ON orders.OrderID = orderdetails.OrderID
+                GROUP BY MONTH(OrderDate)';
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+
+            return $stmt->fetchAll();
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }

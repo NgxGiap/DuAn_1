@@ -75,12 +75,10 @@ require_once 'layout/menu.php';
                             <div class="billing-form-wrap">
 
                                 <div class="single-input-item">
-                                    <label for="RecipientName"
-                                        class="required">Tên người nhận
+                                    <label for="RecipientName" class="required">Tên người nhận
                                     </label>
                                     <input type="text" name="RecipientName" value="<?= $user['FullName'] ?>" id="RecipientName"
-                                        placeholder="Tên người nhận"
-                                        required />
+                                        placeholder="Tên người nhận" required />
                                 </div>
 
                                 <div class="single-input-item">
@@ -92,15 +90,15 @@ require_once 'layout/menu.php';
                                 </div>
 
                                 <div class="single-input-item">
-                                    <label for="RecipientPhone">Số điện thoại người nhận</label>
+                                    <label for="RecipientPhone" class="required">Số điện thoại người nhận</label>
                                     <input type="text" name="RecipientPhone" value="<?= $user['Phone'] ?>" id="RecipientPhone"
-                                        placeholder="Số điện thoại người nhận" />
+                                        placeholder="Số điện thoại người nhận" required />
                                 </div>
 
                                 <div class="single-input-item">
-                                    <label for="RecipientAddress">Địa chỉ người nhận</label>
+                                    <label for="RecipientAddress" class="required">Địa chỉ người nhận</label>
                                     <input type="text" name="RecipientAddress" value="<?= $user['Address'] ?>" id="RecipientAddress"
-                                        placeholder="Địa chỉ người nhận" />
+                                        placeholder="Địa chỉ người nhận" required />
                                 </div>
 
                                 <div class="single-input-item">
@@ -108,7 +106,7 @@ require_once 'layout/menu.php';
                                     <textarea name="Note"
                                         id="Note" cols="30"
                                         rows="3"
-                                        placeholder="Ghi chú về đơn hàng "><?= $user['Note'] ?></textarea>
+                                        placeholder="Ghi chú về đơn hàng "></textarea>
                                 </div>
                             </div>
                         </div>
@@ -158,13 +156,13 @@ require_once 'layout/menu.php';
                                                 <td>Shipping</td>
                                                 <td
                                                     class="d-flex justify-content-center">
-                                                    <strong>30.000 đ</strong>
+                                                    <strong>Miễn phí ship toàn quốc</strong>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>Tổng tiền</td>
-                                                <input type="hidden" name="TotalAmount" value="<?php echo formatPrice($totalCart + 30000) . ' đ'; ?>">
-                                                <td><strong><?php echo formatPrice($totalCart + 30000) . ' đ'; ?></strong></td>
+                                                <input type="hidden" name="TotalAmount" value="<?php echo formatPrice($totalCart) . ' đ'; ?>">
+                                                <td><strong><?php echo formatPrice($totalCart) . ' đ'; ?></strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>

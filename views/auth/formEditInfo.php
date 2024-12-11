@@ -45,25 +45,25 @@ require_once 'views/layout/menu.php';
                         <?php } ?>
                         <h3>Thông tin cá nhân</h3>
                         <input type="hidden" name="AccountID" value="<?= $info['AccountID'] ?>">
-                        <div class="form-group">
+                        <div class="form-group single-input-item">
                             <label class="col-lg-3 control-label">User name:</label>
                             <div class="col-lg-12">
                                 <input class="form-control" name="Username" type="text" value="<?= $info['Username'] ?>" placeholder="Sửa user name">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group single-input-item">
                             <label class="col-lg-3 control-label">Họ tên:</label>
                             <div class="col-lg-12">
                                 <input class="form-control" name="FullName" type="text" value="<?= $info['FullName'] ?>" placeholder="Nhập họ tên">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group single-input-item">
                             <label class="col-lg-3 control-label">Số điện thoại:</label>
                             <div class="col-lg-12">
                                 <input class="form-control" name="Phone" type="text" value="<?= $info['Phone'] ?>" placeholder="Thêm số điện thoại">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group single-input-item">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-12">
                                 <input class="form-control" name="Email" type="text" value="<?= $info['Email'] ?>" placeholder="Thêm email">
@@ -72,10 +72,9 @@ require_once 'views/layout/menu.php';
                                 <?php } ?>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-12">
-                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                        <div class="form-group single-input-item col-2">
+                            <div>
+                                <button type="submit" class="btn btn-sqr">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -89,7 +88,7 @@ require_once 'views/layout/menu.php';
                     <?php } ?>
                     <h3>Đổi mật khẩu</h3>
                     <form action="<?= BASE_URL . '?act=edit-password' ?>" method="POST">
-                        <div class="form-group">
+                        <div class="form-group single-input-item">
                             <label class="col-md-3 control-label">Mật khẩu cũ:</label>
                             <div class="col-md-12">
                                 <input class="form-control" type="password" name="old_pass" value="">
@@ -98,7 +97,7 @@ require_once 'views/layout/menu.php';
                                 <?php } ?>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group single-input-item">
                             <label class="col-md-3 control-label">Mật khẩu mới:</label>
                             <div class="col-md-12">
                                 <input class="form-control" type="password" name="new_pass" value="">
@@ -107,7 +106,7 @@ require_once 'views/layout/menu.php';
                                 <?php } ?>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group single-input-item">
                             <label class="col-md-3 control-label">Nhập lại mật khẩu:</label>
                             <div class="col-md-12">
                                 <input class="form-control" type="password" name="confirm_pass" value="">
@@ -116,10 +115,9 @@ require_once 'views/layout/menu.php';
                                 <?php } ?>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-12">
-                                <input type="submit" class="btn btn-primary" value="Save Changes">
+                        <div class="form-group single-input-item col-2">
+                            <div>
+                                <button type="submit" class="btn btn-sqr">Submit</button>
                             </div>
                         </div>
                     </form>
